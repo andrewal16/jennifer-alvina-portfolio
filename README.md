@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jennifer Alvina Portfolio
 
-## Getting Started
+Production-ready premium portfolio website for interior designer **Jennifer Alvina**.
 
-First, run the development server:
+## Stack
+- Next.js (App Router) + TypeScript
+- Tailwind CSS
+- Sanity CMS (content + media)
+- Neon Postgres (contact submissions)
+- Vercel deployment
+
+## 1) Environment Variables
+Set in `.env.local` for local dev and in Vercel Project Settings for production:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Sanity (public read)
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+
+# Neon HTTP SQL endpoint (server-side)
+NEON_HTTP_SQL_URL=https://<your-neon-http-sql-endpoint>
+NEON_HTTP_SQL_TOKEN=<your_neon_http_token>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 2) Run Database Schema
+Execute SQL from:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `db/schema.sql`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This creates the `contact_submissions` table used by the contact form API route.
 
-## Learn More
+## 3) Run Locally
+```bash
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 4) Sanity Content Models
+Schemas:
+- `sanity/schemas/project.ts`
+- `sanity/schemas/homePage.ts`
+- `sanity/schemas/contactInfo.ts`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 5) Cara Admin Menambahkan Project Baru
+Agar admin bisa tambah project tanpa ubah code, gunakan **Sanity Studio**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Buka Sanity Studio project (tim internal).
+2. Masuk ke document type **Project**.
+3. Klik **Create new Project**.
+4. Isi field utama:
+   - Title
+   - Slug (klik Generate)
+   - Short Summary
+   - Category, Location, Year, Area Size, Style
+5. Upload media:
+   - Cover Image
+   - Gallery Images
+   - Additional Project Images (optional)
+6. Isi bagian tambahan jika ada:
+   - Materials Used
+   - Highlights
+   - Testimonial
+7. Aktifkan **Featured Project** jika ingin tampil di Home.
+8. Klik **Publish**.
 
-## Deploy on Vercel
+Setelah publish, project otomatis muncul di:
+- `/portfolio`
+- `/portfolio/[slug]`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> Catatan: jika project baru belum muncul, tunggu cache revalidate (±60 detik) atau trigger redeploy di Vercel.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 6) Main Routes
+- `/` Home
+- `/portfolio` Portfolio listing
+- `/portfolio/[slug]` Portfolio detail
+- `/contact` Contact form
+- `/api/contact` Form submission route (stores in Neon)
+
+## 7) Deploy to Vercel
+1. Push to Git provider.
+2. Import project in Vercel.
+3. Add all env vars in Vercel settings.
+4. Deploy.
+5. Verify `/api/contact` inserts rows into Neon.
