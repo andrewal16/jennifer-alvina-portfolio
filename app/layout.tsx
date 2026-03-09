@@ -13,11 +13,7 @@ export const metadata: Metadata = {
     "Elegant interior design portfolio for Jennifer Alvina, showcasing premium residential and hospitality projects.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body className="bg-stone-50 text-stone-900 antialiased">
