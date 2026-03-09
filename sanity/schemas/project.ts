@@ -1,0 +1,47 @@
+export const projectType = {
+  name: "project",
+  title: "Project",
+  type: "document",
+  fields: [
+    { name: "title", title: "Title", type: "string", validation: (Rule: { required: () => unknown }) => Rule.required() },
+    {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: { source: "title", maxLength: 96 },
+      validation: (Rule: { required: () => unknown }) => Rule.required(),
+    },
+    { name: "coverImage", title: "Cover Image", type: "image", options: { hotspot: true }, fields: [{ name: "alt", type: "string", title: "Alt text" }] },
+    { name: "summary", title: "Short Summary", type: "text", rows: 3 },
+    { name: "description", title: "Full Description", type: "text", rows: 8 },
+    { name: "category", title: "Category", type: "string" },
+    { name: "location", title: "Location", type: "string" },
+    { name: "year", title: "Year", type: "number" },
+    { name: "areaSize", title: "Area Size", type: "string" },
+    { name: "styleConcept", title: "Style / Concept", type: "string" },
+    { name: "materialsUsed", title: "Materials Used", type: "array", of: [{ type: "string" }] },
+    {
+      name: "galleryImages",
+      title: "Gallery Images",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true }, fields: [{ name: "alt", type: "string", title: "Alt text" }] }],
+    },
+    {
+      name: "additionalImages",
+      title: "Additional Project Images",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true }, fields: [{ name: "alt", type: "string", title: "Alt text" }] }],
+    },
+    {
+      name: "testimonial",
+      title: "Testimonial",
+      type: "object",
+      fields: [
+        { name: "quote", title: "Quote", type: "text" },
+        { name: "author", title: "Author", type: "string" },
+      ],
+    },
+    { name: "highlights", title: "Highlights", type: "array", of: [{ type: "string" }] },
+    { name: "featured", title: "Featured Project", type: "boolean", initialValue: false },
+  ],
+};
