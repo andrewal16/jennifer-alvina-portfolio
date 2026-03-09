@@ -1,50 +1,22 @@
-export type SanityImage = {
-  asset?: {
-    url?: string;
-  };
-  alt?: string;
-};
-
 export type Project = {
   _id: string;
   title: string;
   slug: string;
-  coverImage?: SanityImage;
+  coverImage?: string;
   summary: string;
   description?: string;
   category?: string;
   location?: string;
   year?: number;
-  areaSize?: string;
+  area?: string;
   styleConcept?: string;
   materialsUsed?: string[];
-  galleryImages?: SanityImage[];
-  additionalImages?: SanityImage[];
+  gallery?: string[];
+  floorPlanImages?: string[];
   testimonial?: {
     quote: string;
     author?: string;
   };
   highlights?: string[];
   featured?: boolean;
-};
-
-export type HomeContent = {
-  heroEyebrow?: string;
-  heroTitle: string;
-  heroSubtitle: string;
-  ctaLabel?: string;
-};
-
-export type ContactInfo = {
-  email?: string;
-  phone?: string;
-  location?: string;
-};
-
-export type ContactSubmissionInput = {
-  fullName: string;
-  email: string;
-  phone?: string;
-  projectType: string;
-  message: string;
 };

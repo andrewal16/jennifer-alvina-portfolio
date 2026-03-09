@@ -1,97 +1,90 @@
-import { sanityFetch } from "@/lib/sanity";
-import type { ContactInfo, HomeContent, Project } from "@/lib/types";
+import { sanityQuery, urlForImage } from "@/lib/sanity";
+import type { Project } from "@/lib/types";
 
-const projectProjection = `{
+const fallbackProjects: Project[] = [
+  {
+    _id: "1",
+    title: "Serene Penthouse Residence",
+    slug: "serene-penthouse-residence",
+    summary: "A calm, light-filled penthouse blending warm stone, oak, and sculptural lighting.",
+    description:
+      "This project reimagines a compact penthouse into a serene retreat with layered textures and quiet detailing.",
+    category: "Residential",
+    location: "Jakarta, Indonesia",
+    year: 2024,
+    area: "240 sqm",
+    styleConcept: "Warm Minimalism",
+    materialsUsed: ["Travertine", "White Oak", "Limewash", "Brass"],
+    gallery: ["https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1400&q=80"],
+    highlights: ["Custom kitchen island", "Built-in display wall", "Soft ambient lighting"],
+    featured: true,
+  },
+  {
+    _id: "2",
+    title: "Editorial Living Loft",
+    slug: "editorial-living-loft",
+    summary: "A modern loft with gallery-like composition, rich neutrals, and curated forms.",
+    category: "Residential",
+    location: "Bandung, Indonesia",
+    year: 2023,
+    area: "180 sqm",
+    styleConcept: "Contemporary Editorial",
+    gallery: ["https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=80"],
+    featured: true,
+  },
+];
+
+type SanityProject = Omit<Project, "coverImage" | "gallery" | "floorPlanImages" | "slug"> & {
+  slug: { current: string };
+  coverImage?: { asset?: { _ref?: string } };
+  gallery?: { asset?: { _ref?: string } }[];
+  floorPlanImages?: { asset?: { _ref?: string } }[];
+};
+
+const projectQuery = `*[_type == "project"] | order(year desc, _createdAt desc) {
   _id,
   title,
-  "slug": slug.current,
-  coverImage{asset->{url}, alt},
+  slug,
   summary,
   description,
   category,
   location,
   year,
-  areaSize,
+  area,
   styleConcept,
   materialsUsed,
-  galleryImages[]{asset->{url}, alt},
-  additionalImages[]{asset->{url}, alt},
+  gallery,
+  floorPlanImages,
   testimonial,
   highlights,
-  featured
+  featured,
+  coverImage
 }`;
 
-const fallbackHome: HomeContent = {
-  heroEyebrow: "Interior Designer",
-  heroTitle: "Refined interiors that balance elegance, emotion, and functionality.",
-  heroSubtitle:
-    "Jennifer Alvina creates high-end residential and hospitality spaces with a minimalist editorial approach and timeless materiality.",
-  ctaLabel: "Start a Project",
-};
-
-const fallbackContact: ContactInfo = {
-  email: "hello@jenniferalvina.com",
-  phone: "+62 812-3456-7890",
-  location: "Jakarta, Indonesia",
-};
-
-const fallbackProjects: Project[] = [
-  {
-    _id: "p1",
-    title: "Serene Penthouse Residence",
-    slug: "serene-penthouse-residence",
-    summary: "A warm minimalist residence with curated textures and soft architectural lighting.",
-    category: "Residential",
-    location: "Jakarta",
-    year: 2024,
-    areaSize: "240 sqm",
-    styleConcept: "Warm Minimalism",
-    materialsUsed: ["Travertine", "Oak", "Linen", "Brushed Brass"],
-    featured: true,
-    coverImage: {
-      asset: {
-        url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80",
-      },
-      alt: "Warm minimalist living room",
-    },
-    galleryImages: [
-      {
-        asset: {
-          url: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?auto=format&fit=crop&w=1600&q=80",
-        },
-        alt: "Minimal dining area",
-      },
-    ],
-  },
-];
-
-export async function getHomeContent() {
-  const query = `*[_type == "homePage"][0]{heroEyebrow,heroTitle,heroSubtitle,ctaLabel}`;
-  const content = await sanityFetch<HomeContent>(query);
-  return content ?? fallbackHome;
+function mapProject(project: SanityProject): Project {
+  return {
+    ...project,
+    slug: project.slug.current,
+    coverImage: urlForImage(project.coverImage?.asset?._ref),
+    gallery: project.gallery?.map((img) => urlForImage(img.asset?._ref)).filter(Boolean) as string[] | undefined,
+    floorPlanImages: project.floorPlanImages
+      ?.map((img) => urlForImage(img.asset?._ref))
+      .filter(Boolean) as string[] | undefined,
+  };
 }
 
-export async function getContactInfo() {
-  const query = `*[_type == "contactInfo"][0]{email,phone,location}`;
-  const content = await sanityFetch<ContactInfo>(query);
-  return content ?? fallbackContact;
+export async function getProjects(): Promise<Project[]> {
+  const projects = await sanityQuery<SanityProject[]>(projectQuery);
+  if (!projects?.length) return fallbackProjects;
+  return projects.map(mapProject);
 }
 
-export async function getProjects() {
-  const query = `*[_type == "project"] | order(year desc, _createdAt desc) ${projectProjection}`;
-  const projects = await sanityFetch<Project[]>(query);
-  return projects?.length ? projects : fallbackProjects;
-}
-
-export async function getFeaturedProjects() {
+export async function getFeaturedProjects(): Promise<Project[]> {
   const projects = await getProjects();
   return projects.filter((project) => project.featured).slice(0, 3);
 }
 
-export async function getProjectBySlug(slug: string) {
-  const query = `*[_type == "project" && slug.current == $slug][0] ${projectProjection}`;
-  const project = await sanityFetch<Project>(query.replace("$slug", `"${slug}"`));
-  if (project) return project;
+export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
   const projects = await getProjects();
-  return projects.find((item) => item.slug === slug);
+  return projects.find((project) => project.slug === slug);
 }
