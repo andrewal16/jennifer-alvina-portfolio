@@ -1,0 +1,36 @@
+export const projectType = {
+  name: "project",
+  title: "Project",
+  type: "document",
+  fields: [
+    { name: "title", title: "Project Title", type: "string" },
+    { name: "slug", title: "Slug", type: "slug", options: { source: "title", maxLength: 96 } },
+    { name: "coverImage", title: "Cover Image", type: "image", options: { hotspot: true } },
+    { name: "summary", title: "Short Summary", type: "text", rows: 3 },
+    { name: "description", title: "Full Description", type: "text", rows: 8 },
+    { name: "category", title: "Project Category", type: "string" },
+    { name: "location", title: "Location", type: "string" },
+    { name: "year", title: "Year", type: "number" },
+    { name: "area", title: "Area / Size", type: "string" },
+    { name: "styleConcept", title: "Style / Concept", type: "string" },
+    { name: "materialsUsed", title: "Materials Used", type: "array", of: [{ type: "string" }] },
+    { name: "gallery", title: "Project Gallery", type: "array", of: [{ type: "image", options: { hotspot: true } }] },
+    {
+      name: "floorPlanImages",
+      title: "Floor Plans / Supporting Images",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+    },
+    {
+      name: "testimonial",
+      title: "Testimonial",
+      type: "object",
+      fields: [
+        { name: "quote", title: "Quote", type: "text" },
+        { name: "author", title: "Author", type: "string" },
+      ],
+    },
+    { name: "highlights", title: "Project Highlights", type: "array", of: [{ type: "string" }] },
+    { name: "featured", title: "Featured on Home", type: "boolean", initialValue: false },
+  ],
+};
