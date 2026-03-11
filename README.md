@@ -1,6 +1,6 @@
-# Jennifer Alvina Portfolio
+# Jennifer Atelier Portfolio
 
-Production-ready premium portfolio website for interior designer **Jennifer Alvina**.
+Production-ready premium portfolio website for interior designer **Jennifer Atelier**.
 
 ## Stack
 - Next.js (App Router) + TypeScript
@@ -17,9 +17,8 @@ Set in `.env.local` for local dev and in Vercel Project Settings for production:
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_sanity_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 
-# Neon HTTP SQL endpoint (server-side)
-NEON_HTTP_SQL_URL=https://<your-neon-http-sql-endpoint>
-NEON_HTTP_SQL_TOKEN=<your_neon_http_token>
+# Neon connection string (server-side)
+DATABASE_URL=postgresql://<user>:<password>@<host>/<database>?sslmode=require
 ```
 
 ## 2) Run Database Schema
