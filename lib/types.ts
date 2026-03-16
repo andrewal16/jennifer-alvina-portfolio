@@ -2,6 +2,22 @@ export type ProjectImage = {
   url: string;
   alt?: string;
   caption?: string;
+  lqip?: string;
+  width?: number;
+  height?: number;
+  aspectRatio?: number;
+  hotspot?: {
+    x?: number;
+    y?: number;
+    height?: number;
+    width?: number;
+  };
+  crop?: {
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
 };
 
 export type ProjectTestimonial = {
@@ -20,7 +36,7 @@ export type Project = {
   _id: string;
   title: string;
   slug: string;
-  coverImage?: string;
+  coverImage?: ProjectImage;
   summary: string;
   description?: string;
   challenge?: string;
@@ -35,8 +51,8 @@ export type Project = {
   styleConcept?: string;
   services?: string[];
   materialsUsed?: string[];
-  gallery?: string[];
-  floorPlanImages?: string[];
+  gallery?: ProjectImage[];
+  floorPlanImages?: ProjectImage[];
   beforeAfterGallery?: ProjectBeforeAfterItem[];
   testimonial?: ProjectTestimonial;
   highlights?: string[];

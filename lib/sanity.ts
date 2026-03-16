@@ -1,75 +1,66 @@
+import { createClient } from "next-sanity";
+import { createImageUrlBuilder } from "@sanity/image-url";
+
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
-
 const apiVersion = "2025-01-01";
-const baseUrl =
-  projectId && dataset
-    ? `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}`
-    : null;
 
-type SanityQueryResponse<T> = {
-  result: T;
+const hasSanityConfig = Boolean(projectId && dataset);
+
+const sanityConfig = {
+  projectId: projectId ?? "",
+  dataset: dataset ?? "production",
+  apiVersion,
 };
 
-function buildQueryUrl(query: string, params?: Record<string, unknown>) {
-  if (!baseUrl) return null;
+// Performance: use the Sanity CDN for production reads to reduce latency globally.
+const client = hasSanityConfig
+  ? createClient({
+      ...sanityConfig,
+      useCdn: true,
+    })
+  : null;
 
-  const searchParams = new URLSearchParams({
-    query,
-  });
+const imageBuilder = createImageUrlBuilder(sanityConfig);
 
-  if (params) {
-    for (const [key, value] of Object.entries(params)) {
-      searchParams.set(`$${key}`, JSON.stringify(value));
-    }
-  }
+export const imagePresets = {
+  thumbnail: { width: 400, quality: 60 },
+  card: { width: 800, quality: 70 },
+  hero: { width: 1920, quality: 80 },
+  gallery: { width: 1200, quality: 75 },
+  lightbox: { width: 2400, quality: 85 },
+} as const;
 
-  return `${baseUrl}?${searchParams.toString()}`;
+export type ImagePresetName = keyof typeof imagePresets;
+
+type ImageSource = Parameters<typeof imageBuilder.image>[0];
+
+export function urlFor(source: ImageSource) {
+  // Performance: auto format + fit max prevents unnecessary bytes and upscaling.
+  return imageBuilder.image(source).auto("format").fit("max").quality(75);
 }
 
-async function fetchSanity<T>(
-  query: string,
-  params?: Record<string, unknown>,
-): Promise<T | null> {
-  const url = buildQueryUrl(query, params);
-  if (!url) return null;
+export function getOptimizedImageUrl(source: ImageSource, preset: ImagePresetName) {
+  const selectedPreset = imagePresets[preset];
 
-  const response = await fetch(url, {
-    next: { revalidate: 60 },
-    headers: {
-      Accept: "application/json",
-    },
-  });
-
-  if (!response.ok) return null;
-
-  const data = (await response.json()) as SanityQueryResponse<T>;
-  return data.result;
+  // Performance: each preset caps the rendered width/quality per UI context.
+  return urlFor(source)
+    .width(selectedPreset.width)
+    .quality(selectedPreset.quality)
+    .url();
 }
 
 export async function sanityQuery<T>(
   query: string,
   params?: Record<string, unknown>,
 ): Promise<T | null> {
-  return fetchSanity<T>(query, params);
-}
+  if (!client) return null;
 
-function parseAssetRef(assetRef: string) {
-  const match = assetRef.match(
-    /^(image|file)-([a-zA-Z0-9]+)-(\d+x\d+)-([a-z0-9]+)$/,
-  );
-
-  if (!match) return null;
-
-  const [, type, id, dimensions, format] = match;
-  return { type, id, dimensions, format };
-}
-
-export function urlForImage(assetRef?: string): string | undefined {
-  if (!assetRef || !projectId || !dataset) return undefined;
-
-  const parsed = parseAssetRef(assetRef);
-  if (!parsed || parsed.type !== "image") return undefined;
-
-  return `https://cdn.sanity.io/images/${projectId}/${dataset}/${parsed.id}-${parsed.dimensions}.${parsed.format}`;
+  try {
+    return await client.fetch<T>(query, params ?? {}, {
+      next: { revalidate: 3600 },
+    });
+  } catch {
+    return null;
+  }
 }
