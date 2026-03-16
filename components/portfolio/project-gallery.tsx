@@ -10,13 +10,9 @@ type ProjectGalleryProps = {
 };
 
 function getGalleryCardClass(index: number) {
-  const pattern = index % 5;
-
-  if (pattern === 0) return "md:col-span-7 aspect-[4/5]";
-  if (pattern === 1) return "md:col-span-5 aspect-[4/3]";
-  if (pattern === 2) return "md:col-span-5 aspect-[4/3]";
-  if (pattern === 3) return "md:col-span-4 aspect-[3/4]";
-  return "md:col-span-8 aspect-[16/10]";
+  if (index === 0) return "aspect-[4/5] md:row-span-2 md:h-full";
+  if (index % 3 === 0) return "aspect-[4/5]";
+  return "aspect-[4/3]";
 }
 
 export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
@@ -54,13 +50,13 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
 
   return (
     <>
-      <div className="mt-10 grid gap-4 md:grid-cols-12 lg:gap-5">
+      <div className="mt-6 grid gap-2 md:mt-7 md:grid-cols-2 md:gap-3">
         {images.map((image, index) => (
           <button
             key={`${image.url}-${index}`}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className={`${getGalleryCardClass(index)} group relative block overflow-hidden bg-stone-200 text-left`}
+            className={`${getGalleryCardClass(index)} group relative block overflow-hidden rounded-lg bg-stone-200 text-left`}
             aria-label={`Open ${projectTitle} gallery image ${index + 1}`}
           >
             <Image
@@ -70,7 +66,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
               placeholder={image.lqip ? "blur" : "empty"}
               blurDataURL={image.lqip}
               className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 560px"
             />
           </button>
         ))}
