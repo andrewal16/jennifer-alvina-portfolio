@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ProjectGallery } from "@/components/portfolio/project-gallery";
+import { SkeletonCard } from "@/components/skeleton-card";
+
+const ProjectGallery = dynamic(() => import("@/components/portfolio/project-gallery").then((module) => module.ProjectGallery), {
+  // Performance: defer heavy lightbox/gallery client JS until this section is reached.
+  loading: () => <SkeletonCard aspectRatio="16 / 10" />,
+});
 import { getProjectBySlug, getProjects } from "@/lib/projects";
+
+export const revalidate = 3600;
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -254,12 +262,15 @@ export default async function PortfolioDetailPage({ params }: Props) {
                 <div className="relative aspect-[4/5] overflow-hidden bg-stone-200 shadow-[0_24px_90px_rgba(28,25,23,0.14)]">
                   {project.coverImage ? (
                     <Image
-                      src={project.coverImage}
+                      src={project.coverImage.url}
                       alt={project.title}
                       fill
                       priority
                       className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      placeholder={project.coverImage.lqip ? "blur" : "empty"}
+                      blurDataURL={project.coverImage.lqip}
+                      fetchPriority="high"
                     />
                   ) : null}
                 </div>
@@ -372,11 +383,13 @@ export default async function PortfolioDetailPage({ params }: Props) {
               {project.coverImage ? (
                 <div className="relative min-h-[380px] overflow-hidden bg-stone-200">
                   <Image
-                    src={project.coverImage}
+                    src={project.coverImage.url}
                     alt={`${project.title} detail composition`}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 1280px) 100vw, 40vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    placeholder={project.coverImage.lqip ? "blur" : "empty"}
+                    blurDataURL={project.coverImage.lqip}
                   />
                 </div>
               ) : null}
@@ -426,16 +439,18 @@ export default async function PortfolioDetailPage({ params }: Props) {
             <div className="grid gap-5 md:grid-cols-2">
               {project.floorPlanImages.map((image, index) => (
                 <div
-                  key={`${image}-${index}`}
+                  key={`${image.url}-${index}`}
                   className="border border-stone-200 bg-white p-3 shadow-[0_18px_50px_rgba(28,25,23,0.05)]"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
                     <Image
-                      src={image}
+                      src={image.url}
                       alt={`${project.title} supporting visual ${index + 1}`}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      placeholder={image.lqip ? "blur" : "empty"}
+                      blurDataURL={image.lqip}
                     />
                   </div>
                   <p className="px-1 pb-1 pt-4 text-[11px] uppercase tracking-[0.2em] text-stone-500">
@@ -489,7 +504,9 @@ export default async function PortfolioDetailPage({ params }: Props) {
                             }
                             fill
                             className="object-cover"
-                            sizes="(max-width: 1024px) 100vw, 40vw"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            placeholder={item.beforeImage.lqip ? "blur" : "empty"}
+                            blurDataURL={item.beforeImage.lqip}
                           />
                         </div>
                       </div>
@@ -513,7 +530,9 @@ export default async function PortfolioDetailPage({ params }: Props) {
                             }
                             fill
                             className="object-cover"
-                            sizes="(max-width: 1024px) 100vw, 40vw"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            placeholder={item.afterImage.lqip ? "blur" : "empty"}
+                            blurDataURL={item.afterImage.lqip}
                           />
                         </div>
                       </div>
@@ -567,11 +586,13 @@ export default async function PortfolioDetailPage({ params }: Props) {
                   >
                     {nextProject.coverImage ? (
                       <Image
-                        src={nextProject.coverImage}
+                        src={nextProject.coverImage.url}
                         alt={nextProject.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                        sizes="(max-width: 768px) 100vw, 30vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        placeholder={nextProject.coverImage.lqip ? "blur" : "empty"}
+                        blurDataURL={nextProject.coverImage.lqip}
                       />
                     ) : null}
                   </Link>
