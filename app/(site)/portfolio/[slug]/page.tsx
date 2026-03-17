@@ -69,7 +69,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
       <section>
         <Link
           href="/portfolio"
-          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-stone-500 transition-colors hover:text-stone-900"
+          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-slate-500 transition-colors hover:text-primary-900"
         >
           <span className="text-sm leading-none">/</span>
           Back to Portfolio
@@ -78,7 +78,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
 
       {project.coverImage ? (
         <section className="mt-5 md:mt-6">
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-stone-200">
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-200">
             <Image
               src={project.coverImage.url}
               alt={project.coverImage.alt || project.title}
@@ -95,12 +95,12 @@ export default async function PortfolioDetailPage({ params }: Props) {
       ) : null}
 
       {metaTags.length ? (
-        <section className="mt-4 border-b border-stone-200 pb-5 md:mt-5 md:pb-6">
+        <section className="mt-4 border-b border-slate-200 pb-5 md:mt-5 md:pb-6">
           <div className="flex flex-wrap gap-3">
             {metaTags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-md border border-stone-300 px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-stone-600"
+                className="rounded-md border border-primary-200 bg-primary-50 px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-primary-800"
               >
                 {tag}
               </span>
@@ -110,27 +110,27 @@ export default async function PortfolioDetailPage({ params }: Props) {
       ) : null}
 
       <section className="mt-8 md:mt-10">
-        <p className="text-[10px] uppercase tracking-[0.2em] text-stone-500">
+        <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500">
           Selected Interior
         </p>
-        <h1 className="mt-3 max-w-[600px] break-words text-[clamp(1.75rem,4vw,2.25rem)] leading-[1.25] text-stone-950">
+        <h1 className="mt-3 max-w-[600px] break-words text-[clamp(1.75rem,4vw,2.25rem)] leading-[1.25] text-slate-950">
           {project.title}
         </h1>
-        <p className="mt-4 max-w-[520px] text-sm leading-7 text-stone-600 md:text-base md:leading-8">
+        <p className="mt-4 max-w-[520px] text-sm leading-7 text-slate-600 md:text-base md:leading-8">
           {projectDescription}
         </p>
       </section>
 
       {infoItems.length ? (
         <section className="mt-8 md:mt-10">
-          <div className="overflow-hidden rounded-xl border border-stone-200 bg-stone-50">
-            <div className="grid gap-px bg-stone-200 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+            <div className="grid gap-px bg-slate-200 sm:grid-cols-2 lg:grid-cols-3">
               {infoItems.map((item) => (
-                <div key={item.label} className="bg-stone-50 px-4 py-4 md:px-5">
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-stone-500">
+                <div key={item.label} className="bg-slate-50 px-4 py-4 md:px-5">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-slate-500">
                     {item.label}
                   </p>
-                  <p className="mt-1.5 text-sm font-semibold text-stone-800">
+                  <p className="mt-1.5 text-sm font-semibold text-slate-800">
                     {item.value}
                   </p>
                 </div>
@@ -142,7 +142,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
 
       {project.gallery?.length ? (
         <section id="project-gallery" className="mt-10 md:mt-12">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
             Project Gallery
           </p>
           <ProjectGallery images={project.gallery} projectTitle={project.title} />

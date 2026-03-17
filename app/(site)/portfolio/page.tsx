@@ -16,20 +16,20 @@ export default async function PortfolioPage() {
 
   return (
     <main className="pb-20">
-      <section className="border-b border-stone-200/70 bg-white/50">
+      <section className="border-b border-slate-200/70 bg-slate-50">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.2fr_0.8fr] md:px-10 md:py-24">
           <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.22em] text-stone-500">Portfolio</p>
-            <h1 className="max-w-4xl text-5xl leading-tight md:text-7xl">A curated body of interiors shaped by calm luxury, detail, and atmosphere.</h1>
+            <p className="text-xs uppercase tracking-[0.22em] text-accent-500">Portfolio</p>
+            <h1 className="max-w-4xl text-5xl leading-tight text-slate-950 md:text-7xl">A curated body of interiors shaped by calm luxury, detail, and atmosphere.</h1>
           </div>
 
-          <div className="flex flex-col justify-end gap-6 border-l-0 border-stone-200 pt-2 md:border-l md:pl-10">
+          <div className="flex flex-col justify-end gap-6 border-l-0 border-slate-200 pt-2 md:border-l md:pl-10">
             <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-stone-500">Selected Works</p>
-              <p className="mt-2 text-4xl text-stone-900">{projects.length.toString().padStart(2, "0")}</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-accent-500">Selected Works</p>
+              <p className="mt-2 text-4xl text-primary-900">{projects.length.toString().padStart(2, "0")}</p>
             </div>
             <div>
-              <Link href="/contact" className="inline-flex items-center border border-stone-900 px-5 py-3 text-xs uppercase tracking-[0.18em] text-stone-950 transition-colors hover:bg-stone-900 hover:text-stone-50">
+              <Link href="/contact" className="inline-flex items-center rounded-lg bg-primary-900 px-5 py-3 text-xs uppercase tracking-[0.18em] text-white hover:bg-primary-800">
                 Start a Project
               </Link>
             </div>

@@ -60,7 +60,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
             key={`${image.url}-${index}`}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className={`${getGalleryCardClass(index)} group relative block overflow-hidden rounded-lg bg-stone-200 text-left`}
+            className={`${getGalleryCardClass(index)} group relative block overflow-hidden rounded-lg bg-slate-200 text-left`}
             aria-label={`Open ${projectTitle} gallery image ${index + 1}`}
           >
             <Image
@@ -78,7 +78,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
 
       {activeImage ? (
         <div
-          className="fixed inset-0 z-[100] bg-black/88 px-4 py-4 backdrop-blur-sm md:px-6 md:py-6"
+          className="fixed inset-0 z-[100] bg-primary-950/90 px-4 py-4 backdrop-blur-sm md:px-6 md:py-6"
           role="dialog"
           aria-modal="true"
           aria-label={`${projectTitle} image preview`}
@@ -102,7 +102,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
               type="button"
               onClick={() => setActiveIndex(null)}
               aria-label="Close gallery"
-              className="absolute right-3 top-3 rounded-full bg-black/65 px-3 py-2 text-sm font-semibold text-white shadow-lg ring-1 ring-white/35 transition hover:bg-black/85 md:right-5 md:top-5"
+              className="absolute right-3 top-3 rounded-full bg-primary-900/80 px-3 py-2 text-sm font-semibold text-white shadow-lg ring-1 ring-white/35 transition hover:bg-primary-950 md:right-5 md:top-5"
             >
               Close ✕
             </button>
@@ -112,7 +112,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
               onClick={goToPreviousImage}
               disabled={images.length <= 1}
               aria-label="Previous image"
-              className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/65 px-3 py-2 text-sm font-semibold text-white shadow-lg ring-1 ring-white/35 transition hover:bg-black/85 disabled:cursor-not-allowed disabled:opacity-45 md:left-5"
+              className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-primary-900/80 px-3 py-2 text-sm font-semibold text-white shadow-lg ring-1 ring-white/35 transition hover:bg-primary-950 disabled:cursor-not-allowed disabled:opacity-45 md:left-5"
             >
               ← Prev
             </button>
@@ -121,12 +121,12 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
               onClick={goToNextImage}
               disabled={images.length <= 1}
               aria-label="Next image"
-              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/65 px-3 py-2 text-sm font-semibold text-white shadow-lg ring-1 ring-white/35 transition hover:bg-black/85 disabled:cursor-not-allowed disabled:opacity-45 md:right-5"
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-primary-900/80 px-3 py-2 text-sm font-semibold text-white shadow-lg ring-1 ring-white/35 transition hover:bg-primary-950 disabled:cursor-not-allowed disabled:opacity-45 md:right-5"
             >
               Next →
             </button>
 
-            <p className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs font-medium tracking-wide text-white ring-1 ring-white/30 md:bottom-5 md:text-sm">
+            <p className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-primary-900/80 px-3 py-1 text-xs font-medium tracking-wide text-white ring-1 ring-white/30 md:bottom-5 md:text-sm">
               {(activeIndex ?? 0) + 1} / {images.length}
             </p>
           </div>

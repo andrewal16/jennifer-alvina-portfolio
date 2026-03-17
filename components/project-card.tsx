@@ -25,9 +25,9 @@ export function ProjectCard({
   const metaItems = getMetaItems(project);
 
   return (
-    <article className="group overflow-hidden rounded-[28px] border border-stone-200/80 bg-white/80 shadow-[0_20px_60px_rgba(28,25,23,0.06)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(28,25,23,0.1)]">
+    <article className="group overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-[0_4px_6px_-1px_rgba(0,33,71,0.06),0_2px_4px_-2px_rgba(0,33,71,0.04)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_25px_-5px_rgba(0,33,71,0.08),0_8px_10px_-6px_rgba(0,33,71,0.04)]">
       <Link href={`/portfolio/${project.slug}`} className="block">
-        <div className="relative overflow-hidden bg-stone-200" style={{ aspectRatio: image?.aspectRatio ? `${image.aspectRatio}` : "4 / 3" }}>
+        <div className="relative overflow-hidden bg-slate-200" style={{ aspectRatio: image?.aspectRatio ? `${image.aspectRatio}` : "4 / 3" }}>
           {image ? (
             <>
               <Image
@@ -43,15 +43,15 @@ export function ProjectCard({
                 // Performance: accurate sizes prevents oversized images from being downloaded.
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/45 via-stone-900/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-slate-900/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
             </>
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-stone-200 to-stone-300" />
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300" />
           )}
 
           <div className="absolute left-5 top-5 flex flex-wrap gap-2">
             {project.category ? (
-              <span className="rounded-full border border-white/30 bg-white/85 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-stone-900 backdrop-blur">
+              <span className="rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-primary-800">
                 {project.category}
               </span>
             ) : null}
@@ -81,7 +81,7 @@ export function ProjectCard({
       </Link>
 
       <div className="space-y-4 p-6">
-        <p className="line-clamp-3 text-sm leading-6 text-stone-700">{project.summary}</p>
+        <p className="line-clamp-3 text-sm leading-6 text-slate-600">{project.summary}</p>
       </div>
     </article>
   );

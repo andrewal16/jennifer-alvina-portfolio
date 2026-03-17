@@ -12,10 +12,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      {/* Performance: system font stack avoids extra font downloads and keeps PR diffs text-only. */}
-      <body className="bg-stone-50 text-stone-900 antialiased [font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe_UI,Roboto,Helvetica,Arial,sans-serif]">
-        {children}
-      </body>
+      <body className="bg-white text-slate-600 antialiased">{children}</body>
     </html>
   );
 }

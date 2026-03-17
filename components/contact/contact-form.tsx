@@ -70,16 +70,16 @@ function validateForm(form: FormState): FieldErrors {
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
 
-  return <p className="text-sm text-red-700">{message}</p>;
+  return <p className="text-sm text-[var(--error)]">{message}</p>;
 }
 
 function inputClassName(hasError: boolean) {
   return [
-    "w-full border bg-white/80 px-4 py-3 text-sm text-stone-900 outline-none transition",
-    "placeholder:text-stone-400 focus:bg-white",
+    "w-full rounded-lg border bg-white px-4 py-3 text-sm text-slate-800 outline-none",
+    "placeholder:text-slate-400",
     hasError
-      ? "border-red-300 focus:border-red-500"
-      : "border-stone-300 focus:border-stone-900",
+      ? "border-[var(--error)]"
+      : "border-slate-300 focus:border-primary-600 focus:ring-[3px] focus:ring-[rgba(26,111,181,0.15)]",
   ].join(" ");
 }
 
@@ -259,7 +259,7 @@ export function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="fullName"
-            className="text-xs uppercase tracking-[0.18em] text-stone-500"
+            className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700"
           >
             Full Name
           </label>
@@ -281,7 +281,7 @@ export function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="email"
-            className="text-xs uppercase tracking-[0.18em] text-stone-500"
+            className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700"
           >
             Email
           </label>
@@ -304,7 +304,7 @@ export function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="phone"
-            className="text-xs uppercase tracking-[0.18em] text-stone-500"
+            className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700"
           >
             Phone
           </label>
@@ -325,7 +325,7 @@ export function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="projectType"
-            className="text-xs uppercase tracking-[0.18em] text-stone-500"
+            className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700"
           >
             Project Type
           </label>
@@ -354,7 +354,7 @@ export function ContactForm() {
       <div className="space-y-2">
         <label
           htmlFor="message"
-          className="text-xs uppercase tracking-[0.18em] text-stone-500"
+          className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700"
         >
           Project Brief
         </label>
@@ -375,21 +375,21 @@ export function ContactForm() {
 
       <div className="space-y-3">
         <div>
-          <p className="text-xs uppercase tracking-[0.18em] text-stone-500">
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700">
             Spam Protection
           </p>
-          <p className="mt-2 text-sm leading-7 text-stone-600">
+          <p className="mt-2 text-sm leading-7 text-slate-600">
             Please verify before submitting so inquiries can be delivered
             safely.
           </p>
         </div>
 
         {turnstileEnabled ? (
-          <div className="overflow-hidden border border-stone-200 bg-white/80 p-4">
+          <div className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50 p-4">
             <div ref={turnstileContainerRef} />
           </div>
         ) : (
-          <div className="border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          <div className="rounded-lg border border-[var(--warning)]/30 bg-[var(--warning-bg)] px-4 py-3 text-sm text-[var(--warning)]">
             Turnstile is not configured yet. Add{" "}
             <code>NEXT_PUBLIC_TURNSTILE_SITE_KEY</code> to enable spam
             protection.
@@ -397,29 +397,29 @@ export function ContactForm() {
         )}
 
         {turnstileError ? (
-          <p className="text-sm text-red-700">{turnstileError}</p>
+          <p className="text-sm text-[var(--error)]">{turnstileError}</p>
         ) : turnstileEnabled && turnstileToken ? (
-          <p className="text-sm text-emerald-700">
+          <p className="text-sm text-[var(--success)]">
             Verification complete. Your inquiry is ready to send.
           </p>
         ) : null}
       </div>
 
-      <div className="flex flex-col gap-4 border-t border-stone-200 pt-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 border-t border-slate-200 pt-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-2">
           {status === "success" && (
-            <p className="text-sm text-emerald-700">
+            <p className="text-sm text-[var(--success)]">
               Thank you. Your inquiry has been received and will be reviewed
               shortly.
             </p>
           )}
 
           {!!serverError && (
-            <p className="text-sm text-red-700">{serverError}</p>
+            <p className="text-sm text-[var(--error)]">{serverError}</p>
           )}
 
           {status === "idle" && isDirty && (
-            <p className="text-xs text-stone-500">
+            <p className="text-xs text-slate-500">
               Your details are ready to be submitted.
             </p>
           )}
@@ -428,7 +428,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting || (turnstileEnabled && !turnstileToken)}
-          className="inline-flex w-fit items-center justify-center border border-stone-900 px-6 py-3 text-xs uppercase tracking-[0.18em] text-stone-950 transition hover:bg-stone-900 hover:text-stone-50 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex w-fit items-center justify-center rounded-lg bg-primary-900 px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-white hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting ? "Sending..." : "Submit Inquiry"}
         </button>

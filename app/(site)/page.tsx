@@ -58,18 +58,18 @@ export default async function Home() {
   return (
     <main>
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.95),rgba(246,243,239,0.7),rgba(231,224,214,0.35))]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-stone-200/70" />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,#000E1F_0%,#002147_50%,#003366_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-white/10" />
         <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-6 py-20 md:px-10 md:py-28 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
           <div className="space-y-8">
             <div className="space-y-5">
-              <p className="text-xs uppercase tracking-[0.24em] text-stone-500">
+              <p className="text-xs uppercase tracking-[0.24em] text-accent-500">
                 {heroEyebrow}
               </p>
-              <h1 className="max-w-4xl text-5xl leading-tight text-stone-950 md:text-7xl">
+              <h1 className="max-w-4xl text-5xl leading-tight text-white md:text-7xl">
                 {heroTitle}
               </h1>
-              <p className="max-w-2xl text-base leading-8 text-stone-700 md:text-lg">
+              <p className="max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
                 {heroSubtitle}
               </p>
             </div>
@@ -77,13 +77,13 @@ export default async function Home() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href={heroPrimaryCtaHref}
-                className="inline-flex items-center justify-center border border-stone-900 bg-stone-900 px-6 py-3 text-sm uppercase tracking-[0.18em] text-stone-50 transition-colors hover:bg-stone-800"
+                className="inline-flex items-center justify-center border bg-accent-500 border-accent-500 px-6 py-3 text-sm uppercase tracking-[0.18em] text-primary-950 font-semibold transition-colors hover:bg-accent-400"
               >
                 {heroPrimaryCtaLabel}
               </Link>
               <Link
                 href={heroSecondaryCtaHref}
-                className="inline-flex items-center justify-center border border-stone-300 bg-white/70 px-6 py-3 text-sm uppercase tracking-[0.18em] text-stone-900 transition-colors hover:border-stone-900"
+                className="inline-flex items-center justify-center border border-white/70 bg-transparent px-6 py-3 text-sm uppercase tracking-[0.18em] text-white transition-colors hover:bg-white/10"
               >
                 {heroSecondaryCtaLabel}
               </Link>
@@ -91,27 +91,27 @@ export default async function Home() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-            <div className="border border-stone-200 bg-white/70 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+            <div className="border border-white/15 bg-white/10 p-5 backdrop-blur">
+              <p className="text-xs uppercase tracking-[0.2em] text-accent-500">
                 Signature
               </p>
-              <p className="mt-3 text-lg leading-7 text-stone-900">
+              <p className="mt-3 text-lg leading-7 text-white">
                 Calm, editorial interiors with layered warmth and quiet luxury.
               </p>
             </div>
-            <div className="border border-stone-200 bg-white/70 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+            <div className="border border-white/15 bg-white/10 p-5 backdrop-blur">
+              <p className="text-xs uppercase tracking-[0.2em] text-accent-500">
                 Focus
               </p>
-              <p className="mt-3 text-lg leading-7 text-stone-900">
+              <p className="mt-3 text-lg leading-7 text-white">
                 Residential and hospitality spaces shaped by timeless detail.
               </p>
             </div>
-            <div className="border border-stone-200 bg-white/70 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+            <div className="border border-white/15 bg-white/10 p-5 backdrop-blur">
+              <p className="text-xs uppercase tracking-[0.2em] text-accent-500">
                 Approach
               </p>
-              <p className="mt-3 text-lg leading-7 text-stone-900">
+              <p className="mt-3 text-lg leading-7 text-white">
                 Thoughtful planning, refined material choices, and intentional
                 atmosphere.
               </p>
@@ -122,15 +122,16 @@ export default async function Home() {
 
       {content.showFeaturedProjects !== false ? (
         <section className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10 md:py-20">
-          <div className="flex flex-col gap-6 border-b border-stone-200 pb-8 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-6 border-b border-slate-200 pb-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
+              <p className="text-xs uppercase tracking-[0.22em] text-accent-500">
                 {featuredEyebrow}
               </p>
-              <h2 className="mt-3 text-4xl text-stone-950 md:text-5xl">
+              <h2 className="mt-3 text-4xl text-slate-950 md:text-5xl">
                 {featuredTitle}
               </h2>
-              <p className="mt-4 text-base leading-8 text-stone-700">
+              <div className="mt-3 h-[3px] w-[60px] bg-accent-500" />
+              <p className="mt-4 text-base leading-8 text-slate-600">
                 {featuredDescription}
               </p>
             </div>
@@ -138,7 +139,7 @@ export default async function Home() {
             <div>
               <Link
                 href={featuredCtaHref}
-                className="inline-flex items-center text-sm uppercase tracking-[0.18em] text-stone-600 transition-colors hover:text-stone-950"
+                className="inline-flex items-center text-sm uppercase tracking-[0.18em] text-primary-600 transition-colors hover:text-primary-900"
               >
                 {featuredCtaLabel}
               </Link>
@@ -155,24 +156,25 @@ export default async function Home() {
 
       {content.showAboutSection !== false ? (
         <section className="mx-auto w-full max-w-6xl px-6 py-8 md:px-10 md:py-12">
-          <div className="grid gap-8 border border-stone-200 bg-white/60 p-8 md:grid-cols-[1.1fr_0.9fr] md:p-10 lg:gap-12">
+          <div className="grid gap-8 border border-slate-200 bg-slate-100 p-8 md:grid-cols-[1.1fr_0.9fr] md:p-10 lg:gap-12">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
+              <p className="text-xs uppercase tracking-[0.22em] text-accent-500">
                 {aboutEyebrow}
               </p>
-              <h2 className="mt-3 max-w-2xl text-4xl text-stone-950 md:text-5xl">
+              <h2 className="mt-3 max-w-2xl text-4xl text-slate-950 md:text-5xl">
                 {aboutTitle}
               </h2>
+              <div className="mt-3 h-[3px] w-[60px] bg-accent-500" />
             </div>
 
             <div className="space-y-6">
-              <p className="text-base leading-8 text-stone-700">{aboutBody}</p>
+              <p className="text-base leading-8 text-slate-600">{aboutBody}</p>
 
               <div className="flex flex-wrap gap-3">
                 {aboutHighlights.map((item) => (
                   <span
                     key={item}
-                    className="border border-stone-300 bg-stone-50 px-4 py-2 text-sm text-stone-700"
+                    className="rounded-md border border-primary-200 bg-primary-50 px-3 py-1.5 text-sm text-primary-800 hover:bg-primary-100"
                   >
                     {item}
                   </span>
@@ -185,21 +187,22 @@ export default async function Home() {
 
       {content.showBottomCtaSection !== false ? (
         <section className="mx-auto my-16 w-full max-w-6xl px-6 md:px-10">
-          <div className="relative overflow-hidden bg-stone-900 px-8 py-14 text-stone-100 md:px-12 md:py-16">
+          <div className="relative overflow-hidden bg-primary-900 px-8 py-14 text-slate-100 md:px-12 md:py-16">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.16),transparent_35%)]" />
             <div className="relative max-w-3xl">
-              <p className="text-xs uppercase tracking-[0.22em] text-stone-300">
+              <p className="text-xs uppercase tracking-[0.22em] text-slate-300">
                 {ctaEyebrow}
               </p>
               <h2 className="mt-3 text-4xl text-white md:text-5xl">
                 {ctaTitle}
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-stone-300">
+              <div className="mt-3 h-[3px] w-[60px] bg-accent-500" />
+              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
                 {ctaBody}
               </p>
               <Link
                 href={ctaButtonHref}
-                className="mt-8 inline-flex items-center border border-stone-100 px-6 py-3 text-sm uppercase tracking-[0.18em] text-stone-100 transition-colors hover:bg-stone-100 hover:text-stone-900"
+                className="mt-8 inline-flex items-center rounded-lg bg-accent-500 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary-950 hover:bg-accent-400"
               >
                 {ctaButtonLabel}
               </Link>
