@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { ProjectImage } from "@/lib/types";
 
 type ProjectGalleryProps = {
@@ -18,6 +18,18 @@ function getGalleryCardClass(index: number) {
 export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
+  const goToNextImage = useCallback(() => {
+    setActiveIndex((current) =>
+      current === null ? current : (current + 1) % images.length,
+    );
+  }, [images.length]);
+
+  const goToPreviousImage = useCallback(() => {
+    setActiveIndex((current) =>
+      current === null ? current : (current - 1 + images.length) % images.length,
+    );
+  }, [images.length]);
+
   useEffect(() => {
     if (activeIndex === null) return;
 
@@ -25,16 +37,8 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") setActiveIndex(null);
-      if (event.key === "ArrowRight") {
-        setActiveIndex((current) =>
-          current === null ? current : (current + 1) % images.length,
-        );
-      }
-      if (event.key === "ArrowLeft") {
-        setActiveIndex((current) =>
-          current === null ? current : (current - 1 + images.length) % images.length,
-        );
-      }
+      if (event.key === "ArrowRight") goToNextImage();
+      if (event.key === "ArrowLeft") goToPreviousImage();
     }
 
     document.body.style.overflow = "hidden";
@@ -44,7 +48,7 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [activeIndex, images.length]);
+  }, [activeIndex, goToNextImage, goToPreviousImage]);
 
   const activeImage = activeIndex !== null ? images[activeIndex] : null;
 
@@ -80,7 +84,10 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
           aria-label={`${projectTitle} image preview`}
           onClick={() => setActiveIndex(null)}
         >
-          <div className="relative h-full min-h-[55vh] w-full" onClick={(event) => event.stopPropagation()}>
+          <div
+            className="relative h-full min-h-[55vh] w-full"
+            onClick={(event) => event.stopPropagation()}
+          >
             <Image
               src={activeImage.url}
               alt={activeImage.alt || `${projectTitle} full image`}
@@ -88,9 +95,40 @@ export function ProjectGallery({ images, projectTitle }: ProjectGalleryProps) {
               placeholder={activeImage.lqip ? "blur" : "empty"}
               blurDataURL={activeImage.lqip}
               className="object-contain"
-              // Performance: lightbox always fills viewport width.
               sizes="100vw"
             />
+
+            <button
+              type="button"
+              onClick={() => setActiveIndex(null)}
+              aria-label="Close gallery"
+              className="absolute right-3 top-3 rounded-full bg-black/65 px-3 py-2 text-sm font-semibold text-white shadow-lg ring-1 ring-white/35 transition hover:bg-black/85 md:right-5 md:top-5"
+            >
+              Close ✕
+            </button>
+
+            <button
+              type="button"
+              onClick={goToPreviousImage}
+              disabled={images.length <= 1}
+              aria-label="Previous image"
+              className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/65 px-3 py-2 text-sm font-semibold text-white shadow-lg ring-1 ring-white/35 transition hover:bg-black/85 disabled:cursor-not-allowed disabled:opacity-45 md:left-5"
+            >
+              ← Prev
+            </button>
+            <button
+              type="button"
+              onClick={goToNextImage}
+              disabled={images.length <= 1}
+              aria-label="Next image"
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/65 px-3 py-2 text-sm font-semibold text-white shadow-lg ring-1 ring-white/35 transition hover:bg-black/85 disabled:cursor-not-allowed disabled:opacity-45 md:right-5"
+            >
+              Next →
+            </button>
+
+            <p className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs font-medium tracking-wide text-white ring-1 ring-white/30 md:bottom-5 md:text-sm">
+              {(activeIndex ?? 0) + 1} / {images.length}
+            </p>
           </div>
         </div>
       ) : null}
