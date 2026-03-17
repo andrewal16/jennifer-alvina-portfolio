@@ -39,13 +39,13 @@ const fallbackProjects: Project[] = [
 type SanityImageAsset = {
   asset?: {
     _ref?: string;
-    metadata?: {
-      lqip?: string;
-      dimensions?: {
-        width?: number;
-        height?: number;
-        aspectRatio?: number;
-      };
+  };
+  metadata?: {
+    lqip?: string;
+    dimensions?: {
+      width?: number;
+      height?: number;
+      aspectRatio?: number;
     };
   };
   alt?: string;
@@ -76,12 +76,10 @@ type SanityProject = Omit<
 };
 
 const imageProjection = `{
-  asset->{
-    _ref,
-    metadata{
-      lqip,
-      dimensions
-    }
+  asset,
+  "metadata": asset->metadata{
+    lqip,
+    dimensions
   },
   alt,
   caption,
@@ -127,14 +125,14 @@ const pagedProjectsQuery = `*[_type == "project"] | order(year desc, _createdAt 
 function mapImage(image: SanityImageAsset | undefined, preset: ImagePresetName): ProjectImage | undefined {
   if (!image?.asset?._ref) return undefined;
 
-  const dimensions = image.asset.metadata?.dimensions;
+  const dimensions = image.metadata?.dimensions;
 
   return {
     // Performance: context-specific URL presets keep payload sizes aligned with UI layout.
     url: getOptimizedImageUrl(image, preset),
     alt: image.alt,
     caption: image.caption,
-    lqip: image.asset.metadata?.lqip,
+    lqip: image.metadata?.lqip,
     width: dimensions?.width,
     height: dimensions?.height,
     aspectRatio: dimensions?.aspectRatio,
