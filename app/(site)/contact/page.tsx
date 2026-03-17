@@ -59,13 +59,13 @@ export default async function ContactPage() {
       <section className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
         <div className="space-y-8">
           <div className="space-y-4">
-            <p className="text-xs uppercase tracking-[0.22em] text-stone-500">
+            <p className="text-xs uppercase tracking-[0.22em] text-accent-500">
               {pageEyebrow}
             </p>
             <h1 className="max-w-3xl text-5xl leading-tight md:text-6xl">
               {pageTitle}
             </h1>
-            <p className="max-w-2xl text-lg leading-8 text-stone-700">
+            <p className="max-w-2xl text-lg leading-8 text-slate-600">
               {pageDescription}
             </p>
           </div>
@@ -74,10 +74,10 @@ export default async function ContactPage() {
             {contactCards.map((card) => {
               const content = (
                 <>
-                  <p className="text-xs uppercase tracking-[0.18em] text-stone-500">
+                  <p className="text-xs uppercase tracking-[0.18em] text-accent-500">
                     {card.label}
                   </p>
-                  <p className="mt-3 text-lg leading-7 text-stone-900">
+                  <p className="mt-3 text-lg leading-7 text-slate-950">
                     {card.value}
                   </p>
                 </>
@@ -87,14 +87,14 @@ export default async function ContactPage() {
                 <a
                   key={`${card.label}-${card.value}`}
                   href={card.href}
-                  className="rounded-3xl border border-stone-200 bg-white/70 p-6 transition-all hover:border-stone-300 hover:bg-white"
+                  className="rounded-xl border border-slate-200 bg-white p-6 transition-all hover:border-primary-200"
                 >
                   {content}
                 </a>
               ) : (
                 <div
                   key={`${card.label}-${card.value}`}
-                  className="rounded-3xl border border-stone-200 bg-white/70 p-6"
+                  className="rounded-xl border border-slate-200 bg-white p-6"
                 >
                   {content}
                 </div>
@@ -102,12 +102,12 @@ export default async function ContactPage() {
             })}
           </div>
 
-          <div className="rounded-[2rem] border border-stone-200 bg-stone-900 px-6 py-8 text-stone-100 md:px-8">
-            <p className="text-xs uppercase tracking-[0.2em] text-stone-300">
+          <div className="rounded-xl border border-primary-800 bg-[linear-gradient(135deg,#000E1F_0%,#002147_50%,#003366_100%)] px-6 py-8 text-slate-100 md:px-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-slate-300">
               Inquiry Guide
             </p>
             <h2 className="mt-3 text-3xl">{ctaTitle}</h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-stone-300">
+            <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300">
               {ctaDescription}
             </p>
 
@@ -121,7 +121,7 @@ export default async function ContactPage() {
               ].map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-stone-700 px-4 py-2 text-xs uppercase tracking-[0.14em] text-stone-200"
+                  className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.14em] text-slate-200"
                 >
                   {item}
                 </span>
@@ -129,8 +129,8 @@ export default async function ContactPage() {
             </div>
 
             {socialLinks.length ? (
-              <div className="mt-8 border-t border-stone-800 pt-6">
-                <p className="text-xs uppercase tracking-[0.18em] text-stone-400">
+              <div className="mt-8 border-t border-white/10 pt-6">
+                <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
                   Connect
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
@@ -140,7 +140,7 @@ export default async function ContactPage() {
                       href={link.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border border-stone-700 px-4 py-2 text-xs uppercase tracking-[0.16em] text-stone-100 transition-colors hover:border-stone-200"
+                      className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.16em] text-slate-100 transition-colors hover:border-accent-500 hover:text-accent-500"
                     >
                       {link.platform}
                     </a>
@@ -151,15 +151,15 @@ export default async function ContactPage() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-stone-200 bg-white/80 p-6 shadow-[0_20px_60px_rgba(28,25,23,0.08)] backdrop-blur md:p-8">
+        <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-[0_4px_6px_-1px_rgba(0,33,71,0.06),0_2px_4px_-2px_rgba(0,33,71,0.04)] md:p-8">
           <div className="mb-6 space-y-3">
-            <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+            <p className="text-xs uppercase tracking-[0.2em] text-accent-500">
               Project Inquiry Form
             </p>
-            <h2 className="text-3xl text-stone-900">
+            <h2 className="text-3xl text-slate-950">
               Share your project brief
             </h2>
-            <p className="text-sm leading-7 text-stone-600">
+            <p className="text-sm leading-7 text-slate-600">
               Fill in the form below and the studio will get back to you with
               the next steps for consultation, scope discussion, and timeline
               planning.
@@ -168,12 +168,12 @@ export default async function ContactPage() {
 
           <ContactForm />
 
-          <div className="mt-8 border-t border-stone-200 pt-6 text-sm leading-7 text-stone-600">
+          <div className="mt-8 border-t border-slate-200 pt-6 text-sm leading-7 text-slate-600">
             <p>
               Prefer direct email?{" "}
               <a
                 href={`mailto:${siteSettings.contactEmail || "jenniferatelier@gmail.com"}`}
-                className="text-stone-900 underline underline-offset-4"
+                className="text-primary-900 underline underline-offset-4"
               >
                 {siteSettings.contactEmail || "jenniferatelier@gmail.com"}
               </a>
@@ -182,7 +182,7 @@ export default async function ContactPage() {
               You can also explore recent work in the{" "}
               <Link
                 href="/portfolio"
-                className="text-stone-900 underline underline-offset-4"
+                className="text-primary-900 underline underline-offset-4"
               >
                 portfolio
               </Link>{" "}
