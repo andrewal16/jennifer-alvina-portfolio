@@ -104,11 +104,11 @@ export default async function ContactPage() {
             })}
           </div>
 
-          <div className="rounded-xl border border-brand-dark bg-brand-darkest px-6 py-8 text-brand-primary md:px-8">
+          <div className="rounded-[28px] border border-brand-darkest/10 bg-[linear-gradient(135deg,_rgba(37,73,117,0.95)_0%,_rgba(28,58,95,0.96)_55%,_rgba(20,44,72,0.98)_100%)] px-6 py-8 text-brand-primary shadow-[0_22px_48px_rgba(11,29,51,0.12)] md:px-8">
             <p className="text-xs uppercase tracking-[0.2em] text-brand-primary-light">
               Inquiry Guide
             </p>
-            <h2 className="mt-3 text-3xl">{ctaTitle}</h2>
+            <h2 className="mt-3 text-3xl !text-white">{ctaTitle}</h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-brand-primary-light">
               {ctaDescription}
             </p>
@@ -153,7 +153,7 @@ export default async function ContactPage() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-brand-secondary bg-[var(--bg-card)] p-6 shadow-md md:p-8">
+        <div className="rounded-[28px] border border-brand-secondary/25 bg-[var(--bg-card)] p-6 shadow-[0_22px_48px_rgba(11,29,51,0.08)] backdrop-blur-sm md:p-8">
           <div className="mb-6 space-y-3">
             <p className="text-xs uppercase tracking-[0.2em] text-brand-accent">
               Project Inquiry Form
