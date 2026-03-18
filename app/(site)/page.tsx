@@ -56,22 +56,22 @@ export default async function Home() {
   const ctaButtonHref = content.ctaButtonHref || "/contact";
 
   return (
-    <>
-      {/* COLOR PALETTE UPDATE */}
-      <main>
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-brand-darkest" />
-        <div className="absolute inset-x-0 top-0 h-px bg-brand-primary/15" />
-        <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-6 py-20 md:px-10 md:py-28 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
+    <main>
+      <section className="relative overflow-hidden border-b border-white/10 bg-brand-darkest text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(215,180,106,0.18),_transparent_34%),linear-gradient(135deg,_rgba(14,40,73,0.96)_0%,_rgba(8,24,43,0.98)_50%,_rgba(4,12,24,1)_100%)]" />
+        <div className="absolute inset-y-0 right-0 hidden w-[34%] bg-[radial-gradient(circle_at_center,_rgba(112,163,224,0.14),_transparent_65%)] lg:block" />
+        <div className="absolute inset-x-0 top-0 h-px bg-white/12" />
+
+        <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-6 py-20 md:px-10 md:py-28 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div className="space-y-8">
             <div className="space-y-5">
-              <p className="text-xs uppercase tracking-[0.24em] text-brand-accent">
+              <p className="text-xs uppercase tracking-[0.24em] text-brand-accent-light">
                 {heroEyebrow}
               </p>
-              <h1 className="max-w-4xl text-5xl leading-tight text-brand-primary md:text-7xl">
+              <h1 className="max-w-4xl text-5xl leading-tight text-white md:text-7xl">
                 {heroTitle}
               </h1>
-              <p className="max-w-2xl text-base leading-8 text-brand-primary-light md:text-lg">
+              <p className="max-w-2xl text-base leading-8 text-slate-200 md:text-lg">
                 {heroSubtitle}
               </p>
             </div>
@@ -79,13 +79,13 @@ export default async function Home() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href={heroPrimaryCtaHref}
-                className="inline-flex items-center justify-center border border-brand-accent bg-brand-accent px-6 py-3 text-sm uppercase tracking-[0.18em] text-brand-darkest font-semibold transition-colors hover:bg-brand-accent-hover"
+                className="inline-flex items-center justify-center rounded-full border border-brand-accent/70 bg-white/0 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_0_0_1px_rgba(255,255,255,0.02)] transition-all hover:-translate-y-0.5 hover:border-brand-accent hover:bg-brand-accent/12"
               >
                 {heroPrimaryCtaLabel}
               </Link>
               <Link
                 href={heroSecondaryCtaHref}
-                className="inline-flex items-center justify-center border border-brand-primary/70 bg-transparent px-6 py-3 text-sm uppercase tracking-[0.18em] text-brand-primary transition-colors hover:bg-brand-primary/15"
+                className="inline-flex items-center justify-center rounded-full border border-white/30 bg-transparent px-6 py-3 text-sm uppercase tracking-[0.18em] text-slate-100 transition-all hover:-translate-y-0.5 hover:border-white/55 hover:bg-white/8"
               >
                 {heroSecondaryCtaLabel}
               </Link>
@@ -93,27 +93,27 @@ export default async function Home() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-            <div className="border border-brand-secondary/60 bg-brand-primary/15 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-brand-accent">
+            <div className="rounded-2xl border border-white/10 bg-white/6 p-5 backdrop-blur-md">
+              <p className="text-xs uppercase tracking-[0.2em] text-brand-accent-light">
                 Signature
               </p>
-              <p className="mt-3 text-lg leading-7 text-brand-primary">
+              <p className="mt-3 text-lg leading-7 text-slate-100">
                 Calm, editorial interiors with layered warmth and quiet luxury.
               </p>
             </div>
-            <div className="border border-brand-secondary/60 bg-brand-primary/15 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-brand-accent">
+            <div className="rounded-2xl border border-white/10 bg-white/6 p-5 backdrop-blur-md">
+              <p className="text-xs uppercase tracking-[0.2em] text-brand-accent-light">
                 Focus
               </p>
-              <p className="mt-3 text-lg leading-7 text-brand-primary">
+              <p className="mt-3 text-lg leading-7 text-slate-100">
                 Residential and hospitality spaces shaped by timeless detail.
               </p>
             </div>
-            <div className="border border-brand-secondary/60 bg-brand-primary/15 p-5 backdrop-blur">
-              <p className="text-xs uppercase tracking-[0.2em] text-brand-accent">
+            <div className="rounded-2xl border border-white/10 bg-white/6 p-5 backdrop-blur-md">
+              <p className="text-xs uppercase tracking-[0.2em] text-brand-accent-light">
                 Approach
               </p>
-              <p className="mt-3 text-lg leading-7 text-brand-primary">
+              <p className="mt-3 text-lg leading-7 text-slate-100">
                 Thoughtful planning, refined material choices, and intentional
                 atmosphere.
               </p>
@@ -124,7 +124,7 @@ export default async function Home() {
 
       {content.showFeaturedProjects !== false ? (
         <section className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10 md:py-20">
-          <div className="flex flex-col gap-6 border-b border-brand-secondary pb-8 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-6 border-b border-brand-secondary/50 pb-8 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <p className="text-xs uppercase tracking-[0.22em] text-brand-accent">
                 {featuredEyebrow}
@@ -132,8 +132,8 @@ export default async function Home() {
               <h2 className="mt-3 text-4xl text-brand-darkest md:text-5xl">
                 {featuredTitle}
               </h2>
-              <div className="mt-3 h-[3px] w-[60px] bg-brand-accent" />
-              <p className="mt-4 text-base leading-8 text-brand-darkest">
+              <div className="mt-3 h-[3px] w-[60px] rounded-full bg-brand-accent" />
+              <p className="mt-4 text-base leading-8 text-[var(--text-body)]">
                 {featuredDescription}
               </p>
             </div>
@@ -141,7 +141,7 @@ export default async function Home() {
             <div>
               <Link
                 href={featuredCtaHref}
-                className="inline-flex items-center text-sm uppercase tracking-[0.18em] text-brand-accent transition-colors hover:text-brand-dark"
+                className="inline-flex items-center rounded-full border border-brand-darkest/15 px-5 py-2.5 text-sm uppercase tracking-[0.18em] text-brand-darkest transition-all hover:-translate-y-0.5 hover:border-brand-accent hover:text-brand-dark"
               >
                 {featuredCtaLabel}
               </Link>
@@ -158,7 +158,7 @@ export default async function Home() {
 
       {content.showAboutSection !== false ? (
         <section className="mx-auto w-full max-w-6xl px-6 py-8 md:px-10 md:py-12">
-          <div className="grid gap-8 border border-brand-secondary bg-brand-primary-light p-8 md:grid-cols-[1.1fr_0.9fr] md:p-10 lg:gap-12">
+          <div className="grid gap-8 rounded-[28px] border border-white/50 bg-white/65 p-8 shadow-[0_24px_60px_rgba(11,29,51,0.08)] backdrop-blur-sm md:grid-cols-[1.1fr_0.9fr] md:p-10 lg:gap-12">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-brand-accent">
                 {aboutEyebrow}
@@ -166,17 +166,17 @@ export default async function Home() {
               <h2 className="mt-3 max-w-2xl text-4xl text-brand-darkest md:text-5xl">
                 {aboutTitle}
               </h2>
-              <div className="mt-3 h-[3px] w-[60px] bg-brand-accent" />
+              <div className="mt-3 h-[3px] w-[60px] rounded-full bg-brand-accent" />
             </div>
 
             <div className="space-y-6">
-              <p className="text-base leading-8 text-brand-darkest">{aboutBody}</p>
+              <p className="text-base leading-8 text-[var(--text-body)]">{aboutBody}</p>
 
               <div className="flex flex-wrap gap-3">
                 {aboutHighlights.map((item) => (
                   <span
                     key={item}
-                    className="rounded-md border border-brand-secondary bg-brand-primary px-3 py-1.5 text-sm text-brand-darkest hover:bg-brand-primary-dark"
+                    className="rounded-full border border-brand-secondary/35 bg-white/70 px-3.5 py-2 text-sm text-brand-darkest shadow-sm"
                   >
                     {item}
                   </span>
@@ -189,22 +189,22 @@ export default async function Home() {
 
       {content.showBottomCtaSection !== false ? (
         <section className="mx-auto my-16 w-full max-w-6xl px-6 md:px-10">
-          <div className="relative overflow-hidden bg-brand-dark px-8 py-14 text-brand-primary md:px-12 md:py-16">
-            <div className="absolute inset-0 bg-brand-primary/20" />
+          <div className="relative overflow-hidden rounded-[28px] border border-brand-darkest/10 bg-[linear-gradient(135deg,_rgba(11,29,51,0.98)_0%,_rgba(18,48,85,0.96)_100%)] px-8 py-14 text-brand-primary md:px-12 md:py-16">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(215,180,106,0.22),_transparent_32%)]" />
             <div className="relative max-w-3xl">
-              <p className="text-xs uppercase tracking-[0.22em] text-brand-primary-light">
+              <p className="text-xs uppercase tracking-[0.22em] text-brand-accent-light">
                 {ctaEyebrow}
               </p>
-              <h2 className="mt-3 text-4xl text-brand-primary md:text-5xl">
+              <h2 className="mt-3 text-4xl text-white md:text-5xl">
                 {ctaTitle}
               </h2>
-              <div className="mt-3 h-[3px] w-[60px] bg-brand-accent" />
-              <p className="mt-4 max-w-2xl text-base leading-8 text-brand-primary-light">
+              <div className="mt-3 h-[3px] w-[60px] rounded-full bg-brand-accent" />
+              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-200">
                 {ctaBody}
               </p>
               <Link
                 href={ctaButtonHref}
-                className="mt-8 inline-flex items-center rounded-lg bg-brand-accent px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-brand-darkest hover:bg-brand-accent-hover"
+                className="mt-8 inline-flex items-center rounded-full border border-brand-accent/70 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-all hover:-translate-y-0.5 hover:bg-brand-accent/12"
               >
                 {ctaButtonLabel}
               </Link>
@@ -212,7 +212,6 @@ export default async function Home() {
           </div>
         </section>
       ) : null}
-      </main>
-    </>
+    </main>
   );
 }

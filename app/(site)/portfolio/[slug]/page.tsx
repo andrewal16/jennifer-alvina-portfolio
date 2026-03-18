@@ -65,13 +65,11 @@ export default async function PortfolioDetailPage({ params }: Props) {
     "A refined project shaped through careful planning, premium materials, and a calm editorial sensibility.";
 
   return (
-    <>
-      {/* COLOR PALETTE UPDATE */}
-      <main className="mx-auto w-full max-w-[1200px] px-4 pb-16 pt-6 sm:px-5 md:px-8 md:pt-8 lg:px-10 lg:pb-20">
+    <main className="mx-auto w-full max-w-[1200px] px-4 pb-16 pt-6 sm:px-5 md:px-8 md:pt-8 lg:px-10 lg:pb-20">
       <section>
         <Link
           href="/portfolio"
-          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-brand-dark transition-colors hover:text-brand-darkest"
+          className="inline-flex items-center gap-2 rounded-full border border-brand-darkest/12 px-4 py-2 text-[11px] uppercase tracking-[0.16em] text-brand-dark transition-all hover:-translate-y-0.5 hover:border-brand-accent hover:text-brand-darkest"
         >
           <span className="text-sm leading-none">/</span>
           Back to Portfolio
@@ -80,7 +78,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
 
       {project.coverImage ? (
         <section className="mt-5 md:mt-6">
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-brand-primary-dark">
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[28px] border border-white/50 bg-brand-primary-dark shadow-[0_26px_60px_rgba(11,29,51,0.12)]">
             <Image
               src={project.coverImage.url}
               alt={project.coverImage.alt || project.title}
@@ -97,12 +95,12 @@ export default async function PortfolioDetailPage({ params }: Props) {
       ) : null}
 
       {metaTags.length ? (
-        <section className="mt-4 border-b border-brand-secondary pb-5 md:mt-5 md:pb-6">
+        <section className="mt-4 border-b border-brand-secondary/35 pb-5 md:mt-5 md:pb-6">
           <div className="flex flex-wrap gap-3">
             {metaTags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-md border border-brand-secondary bg-brand-primary px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-brand-darkest"
+                className="rounded-full border border-brand-secondary/30 bg-white/72 px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-brand-darkest shadow-sm"
               >
                 {tag}
               </span>
@@ -112,23 +110,26 @@ export default async function PortfolioDetailPage({ params }: Props) {
       ) : null}
 
       <section className="mt-8 md:mt-10">
-        <p className="text-[10px] uppercase tracking-[0.2em] text-brand-dark">
+        <p className="text-[10px] uppercase tracking-[0.2em] text-brand-accent">
           Selected Interior
         </p>
         <h1 className="mt-3 max-w-[600px] break-words text-[clamp(1.75rem,4vw,2.25rem)] leading-[1.25] text-brand-darkest">
           {project.title}
         </h1>
-        <p className="mt-4 max-w-[520px] text-sm leading-7 text-brand-darkest md:text-base md:leading-8">
+        <p className="mt-4 max-w-[520px] text-sm leading-7 text-[var(--text-body)] md:text-base md:leading-8">
           {projectDescription}
         </p>
       </section>
 
       {infoItems.length ? (
         <section className="mt-8 md:mt-10">
-          <div className="overflow-hidden rounded-xl border border-brand-secondary bg-[var(--bg-card)]">
-            <div className="grid gap-px bg-brand-primary-dark sm:grid-cols-2 lg:grid-cols-3">
+          <div className="overflow-hidden rounded-[28px] border border-brand-secondary/25 bg-[var(--bg-card)] shadow-[0_18px_40px_rgba(11,29,51,0.08)]">
+            <div className="grid gap-px bg-brand-primary-dark/40 sm:grid-cols-2 lg:grid-cols-3">
               {infoItems.map((item) => (
-                <div key={item.label} className="bg-brand-primary-light px-4 py-4 md:px-5">
+                <div
+                  key={item.label}
+                  className="bg-white/84 px-4 py-4 backdrop-blur-sm md:px-5"
+                >
                   <p className="text-[10px] uppercase tracking-[0.18em] text-brand-dark">
                     {item.label}
                   </p>
@@ -144,13 +145,12 @@ export default async function PortfolioDetailPage({ params }: Props) {
 
       {project.gallery?.length ? (
         <section id="project-gallery" className="mt-10 md:mt-12">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-brand-dark">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-brand-accent">
             Project Gallery
           </p>
           <ProjectGallery images={project.gallery} projectTitle={project.title} />
         </section>
       ) : null}
-      </main>
-    </>
+    </main>
   );
 }
