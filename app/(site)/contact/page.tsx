@@ -108,7 +108,7 @@ export default async function ContactPage() {
             <p className="text-xs uppercase tracking-[0.2em] text-brand-primary-light">
               Inquiry Guide
             </p>
-            <h2 className="mt-3 text-3xl">{ctaTitle}</h2>
+            <h2 className="mt-3 text-3xl !text-white">{ctaTitle}</h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-brand-primary-light">
               {ctaDescription}
             </p>
