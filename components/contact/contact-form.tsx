@@ -75,11 +75,11 @@ function FieldError({ message }: { message?: string }) {
 
 function inputClassName(hasError: boolean) {
   return [
-    "w-full rounded-lg border bg-white px-4 py-3 text-sm text-slate-800 outline-none",
-    "placeholder:text-slate-400",
+    "w-full rounded-lg border bg-[var(--bg-card)] px-4 py-3 text-sm text-brand-darkest outline-none",
+    "placeholder:text-brand-secondary",
     hasError
       ? "border-[var(--error)]"
-      : "border-slate-300 focus:border-primary-600 focus:ring-[3px] focus:ring-[rgba(26,111,181,0.15)]",
+      : "border-brand-secondary focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/35",
   ].join(" ");
 }
 
@@ -246,7 +246,9 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-6">
+    <>
+      {/* COLOR PALETTE UPDATE */}
+      <form onSubmit={onSubmit} className="grid gap-6">
       {turnstileEnabled ? (
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
@@ -259,7 +261,7 @@ export function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="fullName"
-            className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700"
+            className="text-xs font-medium uppercase tracking-[0.18em] text-brand-darkest"
           >
             Full Name
           </label>
@@ -281,7 +283,7 @@ export function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="email"
-            className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700"
+            className="text-xs font-medium uppercase tracking-[0.18em] text-brand-darkest"
           >
             Email
           </label>
@@ -304,7 +306,7 @@ export function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="phone"
-            className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700"
+            className="text-xs font-medium uppercase tracking-[0.18em] text-brand-darkest"
           >
             Phone
           </label>
@@ -325,7 +327,7 @@ export function ContactForm() {
         <div className="space-y-2">
           <label
             htmlFor="projectType"
-            className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700"
+            className="text-xs font-medium uppercase tracking-[0.18em] text-brand-darkest"
           >
             Project Type
           </label>
@@ -354,7 +356,7 @@ export function ContactForm() {
       <div className="space-y-2">
         <label
           htmlFor="message"
-          className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700"
+          className="text-xs font-medium uppercase tracking-[0.18em] text-brand-darkest"
         >
           Project Brief
         </label>
@@ -375,17 +377,17 @@ export function ContactForm() {
 
       <div className="space-y-3">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-700">
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-brand-darkest">
             Spam Protection
           </p>
-          <p className="mt-2 text-sm leading-7 text-slate-600">
+          <p className="mt-2 text-sm leading-7 text-brand-darkest">
             Please verify before submitting so inquiries can be delivered
             safely.
           </p>
         </div>
 
         {turnstileEnabled ? (
-          <div className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50 p-4">
+          <div className="overflow-hidden rounded-lg border border-brand-secondary bg-brand-primary-light p-4">
             <div ref={turnstileContainerRef} />
           </div>
         ) : (
@@ -405,7 +407,7 @@ export function ContactForm() {
         ) : null}
       </div>
 
-      <div className="flex flex-col gap-4 border-t border-slate-200 pt-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 border-t border-brand-secondary pt-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-2">
           {status === "success" && (
             <p className="text-sm text-[var(--success)]">
@@ -419,7 +421,7 @@ export function ContactForm() {
           )}
 
           {status === "idle" && isDirty && (
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-brand-dark">
               Your details are ready to be submitted.
             </p>
           )}
@@ -428,11 +430,12 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting || (turnstileEnabled && !turnstileToken)}
-          className="inline-flex w-fit items-center justify-center rounded-lg bg-primary-900 px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-white hover:bg-primary-800 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex w-fit items-center justify-center rounded-lg bg-brand-dark px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary hover:bg-brand-darkest disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting ? "Sending..." : "Submit Inquiry"}
         </button>
       </div>
-    </form>
+      </form>
+    </>
   );
 }

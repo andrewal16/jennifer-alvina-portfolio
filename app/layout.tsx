@@ -12,7 +12,8 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="bg-white text-slate-600 antialiased">{children}</body>
+      {/* COLOR PALETTE UPDATE */}
+      <body className="bg-brand-primary text-brand-darkest antialiased">{children}</body>
     </html>
   );
 }

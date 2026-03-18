@@ -25,9 +25,11 @@ export function ProjectCard({
   const metaItems = getMetaItems(project);
 
   return (
-    <article className="group overflow-hidden rounded-xl border border-slate-200/80 bg-white shadow-[0_4px_6px_-1px_rgba(0,33,71,0.06),0_2px_4px_-2px_rgba(0,33,71,0.04)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_25px_-5px_rgba(0,33,71,0.08),0_8px_10px_-6px_rgba(0,33,71,0.04)]">
+    <>
+      {/* COLOR PALETTE UPDATE */}
+      <article className="group overflow-hidden rounded-xl border border-brand-secondary bg-[var(--bg-card)] shadow-md transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
       <Link href={`/portfolio/${project.slug}`} className="block">
-        <div className="relative overflow-hidden bg-slate-200" style={{ aspectRatio: image?.aspectRatio ? `${image.aspectRatio}` : "4 / 3" }}>
+        <div className="relative overflow-hidden bg-brand-primary-dark" style={{ aspectRatio: image?.aspectRatio ? `${image.aspectRatio}` : "4 / 3" }}>
           {image ? (
             <>
               <Image
@@ -43,15 +45,15 @@ export function ProjectCard({
                 // Performance: accurate sizes prevents oversized images from being downloaded.
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-slate-900/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-darkest/55 via-brand-darkest/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
             </>
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-primary-dark to-brand-secondary" />
           )}
 
           <div className="absolute left-5 top-5 flex flex-wrap gap-2">
             {project.category ? (
-              <span className="rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-primary-800">
+              <span className="rounded-full border border-brand-secondary bg-brand-primary px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-brand-darkest">
                 {project.category}
               </span>
             ) : null}
@@ -62,7 +64,7 @@ export function ProjectCard({
               {metaItems.length ? (
                 <div className="mb-3 flex flex-wrap gap-2">
                   {metaItems.map((item) => (
-                    <span key={item} className="rounded-full bg-white/15 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-white backdrop-blur">
+                    <span key={item} className="rounded-full bg-brand-primary/20 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-brand-primary backdrop-blur">
                       {item}
                     </span>
                   ))}
@@ -70,8 +72,8 @@ export function ProjectCard({
               ) : null}
 
               <div className="flex items-center justify-between gap-4">
-                <h3 className="max-w-[80%] text-2xl text-white md:text-[1.75rem]">{project.title}</h3>
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition-transform duration-500 group-hover:translate-x-1">
+                <h3 className="max-w-[80%] text-2xl text-brand-primary md:text-[1.75rem]">{project.title}</h3>
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-primary/35 bg-brand-primary/15 text-brand-primary transition-transform duration-500 group-hover:translate-x-1">
                   →
                 </span>
               </div>
@@ -81,8 +83,9 @@ export function ProjectCard({
       </Link>
 
       <div className="space-y-4 p-6">
-        <p className="line-clamp-3 text-sm leading-6 text-slate-600">{project.summary}</p>
+        <p className="line-clamp-3 text-sm leading-6 text-brand-darkest">{project.summary}</p>
       </div>
-    </article>
+      </article>
+    </>
   );
 }
