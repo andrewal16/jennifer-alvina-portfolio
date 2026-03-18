@@ -32,11 +32,11 @@ export function SiteHeaderClient({
   }, []);
 
   return (
-    <>
-      {/* COLOR PALETTE UPDATE */}
-      <header
-      className={`sticky top-0 z-50 border-b border-brand-secondary backdrop-blur ${
-        isScrolled ? "bg-brand-primary shadow-sm" : "bg-transparent"
+    <header
+      className={`sticky top-0 z-50 border-b border-white/10 backdrop-blur-xl ${
+        isScrolled
+          ? "bg-[color:var(--bg-navbar)] shadow-[0_18px_40px_rgba(8,22,37,0.08)]"
+          : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4 md:px-10">
@@ -74,13 +74,12 @@ export function SiteHeaderClient({
 
           <Link
             href={primaryCtaHref}
-            className="inline-flex items-center rounded-lg bg-brand-dark px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary hover:bg-brand-darkest"
+            className="inline-flex items-center rounded-full border border-brand-darkest/16 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-darkest transition-all hover:-translate-y-0.5 hover:border-brand-accent hover:bg-brand-accent/8"
           >
             {primaryCtaLabel}
           </Link>
         </div>
       </nav>
     </header>
-    </>
   );
 }

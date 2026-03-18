@@ -430,7 +430,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting || (turnstileEnabled && !turnstileToken)}
-          className="inline-flex w-fit items-center justify-center rounded-lg bg-brand-dark px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary hover:bg-brand-darkest disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex w-fit items-center justify-center rounded-full border border-brand-darkest/16 px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-brand-darkest transition-all hover:-translate-y-0.5 hover:border-brand-accent hover:bg-brand-accent/8 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting ? "Sending..." : "Submit Inquiry"}
         </button>

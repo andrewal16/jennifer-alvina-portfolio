@@ -104,7 +104,7 @@ export default async function ContactPage() {
             })}
           </div>
 
-          <div className="rounded-xl border border-brand-dark bg-brand-darkest px-6 py-8 text-brand-primary md:px-8">
+          <div className="rounded-[28px] border border-brand-darkest/10 bg-[linear-gradient(135deg,_rgba(11,29,51,0.98)_0%,_rgba(18,48,85,0.96)_100%)] px-6 py-8 text-brand-primary shadow-[0_22px_48px_rgba(11,29,51,0.12)] md:px-8">
             <p className="text-xs uppercase tracking-[0.2em] text-brand-primary-light">
               Inquiry Guide
             </p>
@@ -153,7 +153,7 @@ export default async function ContactPage() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-brand-secondary bg-[var(--bg-card)] p-6 shadow-md md:p-8">
+        <div className="rounded-[28px] border border-brand-secondary/25 bg-[var(--bg-card)] p-6 shadow-[0_22px_48px_rgba(11,29,51,0.08)] backdrop-blur-sm md:p-8">
           <div className="mb-6 space-y-3">
             <p className="text-xs uppercase tracking-[0.2em] text-brand-accent">
               Project Inquiry Form
