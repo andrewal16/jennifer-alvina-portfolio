@@ -32,25 +32,27 @@ export function SiteHeaderClient({
   }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b border-slate-200 backdrop-blur ${
-        isScrolled ? "bg-white shadow-[0_1px_3px_rgba(0,33,71,0.08)]" : "bg-transparent"
+    <>
+      {/* COLOR PALETTE UPDATE */}
+      <header
+      className={`sticky top-0 z-50 border-b border-brand-secondary backdrop-blur ${
+        isScrolled ? "bg-brand-primary shadow-sm" : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4 md:px-10">
         <div className="min-w-0">
           <Link href="/" className="block">
-            <span className="block truncate text-lg font-semibold uppercase tracking-[0.18em] text-primary-900">
+            <span className="block truncate text-lg font-semibold uppercase tracking-[0.18em] text-brand-darkest">
               {brandName}
             </span>
-            <span className="mt-1 block truncate text-[11px] uppercase tracking-[0.22em] text-slate-500">
+            <span className="mt-1 block truncate text-[11px] uppercase tracking-[0.22em] text-brand-dark">
               {brandTagline}
             </span>
           </Link>
         </div>
 
         <div className="hidden items-center gap-8 md:flex">
-          <ul className="flex items-center gap-6 text-[15px] font-medium text-slate-600">
+          <ul className="flex items-center gap-6 text-[15px] font-medium text-brand-darkest">
             {navLinks.map((link) => {
               const active = pathname === link.href;
               return (
@@ -59,8 +61,8 @@ export function SiteHeaderClient({
                     href={link.href}
                     className={`border-b-2 pb-1 ${
                       active
-                        ? "border-accent-500 text-primary-900"
-                        : "border-transparent hover:text-primary-900"
+                        ? "border-brand-accent text-brand-darkest"
+                        : "border-transparent hover:text-brand-dark"
                     }`}
                   >
                     {link.label}
@@ -72,12 +74,13 @@ export function SiteHeaderClient({
 
           <Link
             href={primaryCtaHref}
-            className="inline-flex items-center rounded-lg bg-primary-900 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white hover:bg-primary-800"
+            className="inline-flex items-center rounded-lg bg-brand-dark px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-primary hover:bg-brand-darkest"
           >
             {primaryCtaLabel}
           </Link>
         </div>
       </nav>
     </header>
+    </>
   );
 }

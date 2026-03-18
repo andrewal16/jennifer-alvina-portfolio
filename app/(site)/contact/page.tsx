@@ -55,17 +55,19 @@ export default async function ContactPage() {
     "Share your goals, preferred timeline, and any inspirations so the studio can better understand your project.";
 
   return (
-    <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10 md:py-20">
+    <>
+      {/* COLOR PALETTE UPDATE */}
+      <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10 md:py-20">
       <section className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
         <div className="space-y-8">
           <div className="space-y-4">
-            <p className="text-xs uppercase tracking-[0.22em] text-accent-500">
+            <p className="text-xs uppercase tracking-[0.22em] text-brand-accent">
               {pageEyebrow}
             </p>
             <h1 className="max-w-3xl text-5xl leading-tight md:text-6xl">
               {pageTitle}
             </h1>
-            <p className="max-w-2xl text-lg leading-8 text-slate-600">
+            <p className="max-w-2xl text-lg leading-8 text-brand-darkest">
               {pageDescription}
             </p>
           </div>
@@ -74,10 +76,10 @@ export default async function ContactPage() {
             {contactCards.map((card) => {
               const content = (
                 <>
-                  <p className="text-xs uppercase tracking-[0.18em] text-accent-500">
+                  <p className="text-xs uppercase tracking-[0.18em] text-brand-accent">
                     {card.label}
                   </p>
-                  <p className="mt-3 text-lg leading-7 text-slate-950">
+                  <p className="mt-3 text-lg leading-7 text-brand-darkest">
                     {card.value}
                   </p>
                 </>
@@ -87,14 +89,14 @@ export default async function ContactPage() {
                 <a
                   key={`${card.label}-${card.value}`}
                   href={card.href}
-                  className="rounded-xl border border-slate-200 bg-white p-6 transition-all hover:border-primary-200"
+                  className="rounded-xl border border-brand-secondary bg-[var(--bg-card)] p-6 transition-all hover:border-brand-accent"
                 >
                   {content}
                 </a>
               ) : (
                 <div
                   key={`${card.label}-${card.value}`}
-                  className="rounded-xl border border-slate-200 bg-white p-6"
+                  className="rounded-xl border border-brand-secondary bg-[var(--bg-card)] p-6"
                 >
                   {content}
                 </div>
@@ -102,12 +104,12 @@ export default async function ContactPage() {
             })}
           </div>
 
-          <div className="rounded-xl border border-primary-800 bg-[linear-gradient(135deg,#000E1F_0%,#002147_50%,#003366_100%)] px-6 py-8 text-slate-100 md:px-8">
-            <p className="text-xs uppercase tracking-[0.2em] text-slate-300">
+          <div className="rounded-xl border border-brand-dark bg-brand-darkest px-6 py-8 text-brand-primary md:px-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-brand-primary-light">
               Inquiry Guide
             </p>
             <h2 className="mt-3 text-3xl">{ctaTitle}</h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-slate-300">
+            <p className="mt-4 max-w-xl text-sm leading-7 text-brand-primary-light">
               {ctaDescription}
             </p>
 
@@ -121,7 +123,7 @@ export default async function ContactPage() {
               ].map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.14em] text-slate-200"
+                  className="rounded-full border border-brand-secondary/70 px-4 py-2 text-xs uppercase tracking-[0.14em] text-brand-primary-light"
                 >
                   {item}
                 </span>
@@ -129,8 +131,8 @@ export default async function ContactPage() {
             </div>
 
             {socialLinks.length ? (
-              <div className="mt-8 border-t border-white/10 pt-6">
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+              <div className="mt-8 border-t border-brand-secondary/50 pt-6">
+                <p className="text-xs uppercase tracking-[0.18em] text-brand-secondary">
                   Connect
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
@@ -140,7 +142,7 @@ export default async function ContactPage() {
                       href={link.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.16em] text-slate-100 transition-colors hover:border-accent-500 hover:text-accent-500"
+                      className="rounded-full border border-brand-secondary/70 px-4 py-2 text-xs uppercase tracking-[0.16em] text-brand-primary transition-colors hover:border-brand-accent hover:text-brand-accent"
                     >
                       {link.platform}
                     </a>
@@ -151,15 +153,15 @@ export default async function ContactPage() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-[0_4px_6px_-1px_rgba(0,33,71,0.06),0_2px_4px_-2px_rgba(0,33,71,0.04)] md:p-8">
+        <div className="rounded-xl border border-brand-secondary bg-[var(--bg-card)] p-6 shadow-md md:p-8">
           <div className="mb-6 space-y-3">
-            <p className="text-xs uppercase tracking-[0.2em] text-accent-500">
+            <p className="text-xs uppercase tracking-[0.2em] text-brand-accent">
               Project Inquiry Form
             </p>
-            <h2 className="text-3xl text-slate-950">
+            <h2 className="text-3xl text-brand-darkest">
               Share your project brief
             </h2>
-            <p className="text-sm leading-7 text-slate-600">
+            <p className="text-sm leading-7 text-brand-darkest">
               Fill in the form below and the studio will get back to you with
               the next steps for consultation, scope discussion, and timeline
               planning.
@@ -168,12 +170,12 @@ export default async function ContactPage() {
 
           <ContactForm />
 
-          <div className="mt-8 border-t border-slate-200 pt-6 text-sm leading-7 text-slate-600">
+          <div className="mt-8 border-t border-brand-secondary pt-6 text-sm leading-7 text-brand-darkest">
             <p>
               Prefer direct email?{" "}
               <a
                 href={`mailto:${siteSettings.contactEmail || "jenniferatelier@gmail.com"}`}
-                className="text-primary-900 underline underline-offset-4"
+                className="text-brand-dark underline underline-offset-4"
               >
                 {siteSettings.contactEmail || "jenniferatelier@gmail.com"}
               </a>
@@ -182,7 +184,7 @@ export default async function ContactPage() {
               You can also explore recent work in the{" "}
               <Link
                 href="/portfolio"
-                className="text-primary-900 underline underline-offset-4"
+                className="text-brand-dark underline underline-offset-4"
               >
                 portfolio
               </Link>{" "}
@@ -191,6 +193,7 @@ export default async function ContactPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }
