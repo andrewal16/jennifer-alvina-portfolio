@@ -57,9 +57,9 @@ export default async function Home() {
 
   return (
     <main>
-      <section className="relative overflow-hidden border-b border-white/10 bg-brand-dark text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(244,250,255,0.16),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(215,180,106,0.18),_transparent_28%),linear-gradient(135deg,_rgba(36,73,118,0.94)_0%,_rgba(24,57,95,0.96)_52%,_rgba(17,39,65,0.98)_100%)]" />
-        <div className="absolute inset-y-0 right-0 hidden w-[34%] bg-[radial-gradient(circle_at_center,_rgba(166,205,255,0.18),_transparent_62%)] lg:block" />
+      <section className="relative overflow-hidden border-b border-white/10 bg-brand-darkest text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(215,180,106,0.18),_transparent_34%),linear-gradient(135deg,_rgba(14,40,73,0.96)_0%,_rgba(8,24,43,0.98)_50%,_rgba(4,12,24,1)_100%)]" />
+        <div className="absolute inset-y-0 right-0 hidden w-[34%] bg-[radial-gradient(circle_at_center,_rgba(112,163,224,0.14),_transparent_65%)] lg:block" />
         <div className="absolute inset-x-0 top-0 h-px bg-white/12" />
 
         <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-6 py-20 md:px-10 md:py-28 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
@@ -68,7 +68,7 @@ export default async function Home() {
               <p className="text-xs uppercase tracking-[0.24em] text-brand-accent-light">
                 {heroEyebrow}
               </p>
-              <h1 className="max-w-4xl text-5xl leading-tight !text-white md:text-7xl">
+              <h1 className="max-w-4xl text-5xl leading-tight text-white md:text-7xl">
                 {heroTitle}
               </h1>
               <p className="max-w-2xl text-base leading-8 text-slate-200 md:text-lg">
@@ -93,7 +93,7 @@ export default async function Home() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-            <div className="rounded-2xl border border-white/14 bg-white/8 p-5 backdrop-blur-md">
+            <div className="rounded-2xl border border-white/10 bg-white/6 p-5 backdrop-blur-md">
               <p className="text-xs uppercase tracking-[0.2em] text-brand-accent-light">
                 Signature
               </p>
@@ -101,7 +101,7 @@ export default async function Home() {
                 Calm, editorial interiors with layered warmth and quiet luxury.
               </p>
             </div>
-            <div className="rounded-2xl border border-white/14 bg-white/8 p-5 backdrop-blur-md">
+            <div className="rounded-2xl border border-white/10 bg-white/6 p-5 backdrop-blur-md">
               <p className="text-xs uppercase tracking-[0.2em] text-brand-accent-light">
                 Focus
               </p>
@@ -109,7 +109,7 @@ export default async function Home() {
                 Residential and hospitality spaces shaped by timeless detail.
               </p>
             </div>
-            <div className="rounded-2xl border border-white/14 bg-white/8 p-5 backdrop-blur-md">
+            <div className="rounded-2xl border border-white/10 bg-white/6 p-5 backdrop-blur-md">
               <p className="text-xs uppercase tracking-[0.2em] text-brand-accent-light">
                 Approach
               </p>
@@ -189,13 +189,13 @@ export default async function Home() {
 
       {content.showBottomCtaSection !== false ? (
         <section className="mx-auto my-16 w-full max-w-6xl px-6 md:px-10">
-          <div className="relative overflow-hidden rounded-[28px] border border-brand-darkest/10 bg-[linear-gradient(135deg,_rgba(37,73,117,0.95)_0%,_rgba(28,58,95,0.96)_55%,_rgba(20,44,72,0.98)_100%)] px-8 py-14 text-brand-primary md:px-12 md:py-16">
+          <div className="relative overflow-hidden rounded-[28px] border border-brand-darkest/10 bg-[linear-gradient(135deg,_rgba(11,29,51,0.98)_0%,_rgba(18,48,85,0.96)_100%)] px-8 py-14 text-brand-primary md:px-12 md:py-16">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(215,180,106,0.22),_transparent_32%)]" />
             <div className="relative max-w-3xl">
               <p className="text-xs uppercase tracking-[0.22em] text-brand-accent-light">
                 {ctaEyebrow}
               </p>
-              <h2 className="mt-3 text-4xl !text-white md:text-5xl">
+              <h2 className="mt-3 text-4xl text-white md:text-5xl">
                 {ctaTitle}
               </h2>
               <div className="mt-3 h-[3px] w-[60px] rounded-full bg-brand-accent" />
