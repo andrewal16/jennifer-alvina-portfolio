@@ -1,6 +1,7 @@
 import type { LogoProps } from "sanity";
 
 export function StudioLogo({ title }: LogoProps) {
+  // COLOR PALETTE UPDATE
   return (
     <div style={{ alignItems: "center", display: "flex", gap: "0.75rem" }}>
       <div
@@ -9,8 +10,8 @@ export function StudioLogo({ title }: LogoProps) {
           width: 28,
           borderRadius: 999,
           background:
-            "linear-gradient(135deg, rgb(41, 37, 36), rgb(120, 113, 108))",
-          boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.18)",
+            "linear-gradient(135deg, var(--color-darkest), var(--color-dark))",
+          boxShadow: "inset 0 0 0 1px var(--color-secondary)",
         }}
       />
       <div style={{ display: "grid", gap: "0.15rem" }}>

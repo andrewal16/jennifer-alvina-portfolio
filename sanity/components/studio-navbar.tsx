@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import type { NavbarProps } from "sanity";
 
 const shortcutLinkStyle: CSSProperties = {
-  border: "1px solid rgba(255,255,255,0.18)",
+  border: "1px solid var(--color-secondary)",
   borderRadius: 999,
   color: "inherit",
   display: "inline-flex",
@@ -14,13 +14,14 @@ const shortcutLinkStyle: CSSProperties = {
 };
 
 export function StudioNavbar(props: NavbarProps) {
+  // COLOR PALETTE UPDATE
   return (
     <div>
       <div
         style={{
-          color: "rgb(250, 250, 249)",
+          color: "var(--color-primary)",
           background:
-            "linear-gradient(135deg, rgb(28, 25, 23), rgb(68, 64, 60) 55%, rgb(168, 162, 158))",
+            "linear-gradient(135deg, var(--color-darkest), var(--color-dark) 55%, var(--color-accent))",
           padding: "1rem 1.5rem",
         }}
       >
@@ -36,7 +37,7 @@ export function StudioNavbar(props: NavbarProps) {
           <div>
             <div
               style={{
-                color: "rgba(250,250,249,0.72)",
+                color: "color-mix(in srgb, var(--color-primary) 78%, transparent)",
                 fontSize: "0.75rem",
                 marginBottom: "0.2rem",
               }}
