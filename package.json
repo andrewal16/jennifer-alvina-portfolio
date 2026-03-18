@@ -13,6 +13,7 @@
     "@neondatabase/serverless": "^1.0.2",
     "@sanity/image-url": "^2.0.3",
     "@sanity/vision": "^5.14.1",
+    "framer-motion": "^12.38.0",
     "next": "16.1.6",
     "next-sanity": "^12.1.1",
     "react": "19.2.3",
