@@ -120,7 +120,7 @@ const homePageFallback: HomePageCmsContent = {
 
 const siteSettingsFallback: SiteSettingsCmsContent = {
   siteTitle: "Jennifer Atelier",
-  siteTagline: "Interior Atelier",
+  siteTagline: "Design and Build",
   brandStatement:
     "Elegant interior design portfolio for Jennifer Atelier, showcasing premium residential and hospitality projects.",
   contactEmail: "jenniferatelier@gmail.com",
