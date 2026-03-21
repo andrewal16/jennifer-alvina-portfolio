@@ -52,7 +52,10 @@ export default async function Home() {
         "Space Planning",
         "Material Styling",
       ];
-
+  const heroImageSrc = heroProject?.coverImage?.url ?? null;
+  const heroProjectHref = heroProject?.slug
+    ? `/portfolio/${heroProject.slug}`
+    : "/portfolio";
   // CTA VARIABLES
   const ctaEyebrow = content.ctaSectionEyebrow || "Let's collaborate";
   const ctaTitle =
@@ -180,34 +183,23 @@ export default async function Home() {
               ══════════════════════════════════════════════════════════ */}
           {heroProject && (
             <div className="hero-right-col relative hidden opacity-0 lg:block">
-              {/* Floating badge — dynamic from project category/type */}
               <div className="hero-corner absolute -left-5 -top-5 z-20 border border-[var(--color-accent)]/20 bg-[#0a0f1e] px-4 py-3 opacity-0">
                 <span className="block text-[9px] tracking-[0.3em] uppercase text-[var(--color-accent)]">
                   Selected Work
                 </span>
                 <span className="mt-0.5 block text-[9px] tracking-[0.12em] text-slate-600">
-                  {/* Use project category if available, fallback to title */}
                   {heroProject.category || heroProject.title}
                 </span>
               </div>
 
-              {/* Main frame — now a clickable link to the project */}
               <Link
-                href={`/portfolio/${heroProject.slug?.current ?? heroProject.slug ?? ""}`}
+                href={heroProjectHref}
                 className="group relative block overflow-hidden transition-transform duration-700 hover:scale-[1.01]"
                 style={{ aspectRatio: "3/4", maxHeight: "72vh" }}
               >
-                {/* ── PROJECT COVER IMAGE ── */}
-                {heroProject.coverImage?.asset?.url ||
-                heroProject.coverImage?.url ||
-                heroProject.mainImage?.asset?.url ? (
+                {heroImageSrc ? (
                   <Image
-                    src={
-                      heroProject.coverImage?.asset?.url ||
-                      heroProject.coverImage?.url ||
-                      heroProject.mainImage?.asset?.url ||
-                      ""
-                    }
+                    src={heroImageSrc}
                     alt={heroProject.title || "Featured project"}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -215,26 +207,25 @@ export default async function Home() {
                     priority
                   />
                 ) : (
-                  /* ── FALLBACK: Elegant gradient placeholder ── */
                   <div
                     className="absolute inset-0"
                     style={{
                       background: `
-                        linear-gradient(120deg, rgba(255,255,255,0.04) 0%, transparent 40%),
-                        linear-gradient(to bottom,
-                          #1a1208 0%, #2a1e10 15%, #3d2d1a 30%,
-                          #c4a882 50%, #d4bc98 65%, #b89a74 80%, #9a7e58 100%
-                        )
-                      `,
+              linear-gradient(120deg, rgba(255,255,255,0.04) 0%, transparent 40%),
+              linear-gradient(to bottom,
+                #1a1208 0%, #2a1e10 15%, #3d2d1a 30%,
+                #c4a882 50%, #d4bc98 65%, #b89a74 80%, #9a7e58 100%
+              )
+            `,
                     }}
                   >
                     <div
                       className="absolute inset-0"
                       style={{
                         backgroundImage: `
-                          linear-gradient(rgba(197,160,89,0.07) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(197,160,89,0.07) 1px, transparent 1px)
-                        `,
+                linear-gradient(rgba(197,160,89,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(197,160,89,0.07) 1px, transparent 1px)
+              `,
                         backgroundSize: "48px 48px",
                       }}
                     />
@@ -242,27 +233,23 @@ export default async function Home() {
                       className="absolute inset-0"
                       style={{
                         background: `
-                          radial-gradient(ellipse at 30% 60%, rgba(197,160,89,0.12) 0%, transparent 60%),
-                          linear-gradient(to bottom, rgba(2,6,23,0.4) 0%, transparent 30%, rgba(2,6,23,0.5) 100%)
-                        `,
+                radial-gradient(ellipse at 30% 60%, rgba(197,160,89,0.12) 0%, transparent 60%),
+                linear-gradient(to bottom, rgba(2,6,23,0.4) 0%, transparent 30%, rgba(2,6,23,0.5) 100%)
+              `,
                       }}
                     />
                   </div>
                 )}
 
-                {/* Hover overlay shimmer */}
                 <div className="absolute inset-0 z-[5] bg-gradient-to-t from-transparent via-white/0 to-white/0 transition-all duration-700 group-hover:via-white/[0.03]" />
 
-                {/* Golden frame border */}
                 <div className="pointer-events-none absolute inset-[-1px] z-10 border border-[var(--color-accent)]/35 transition-colors duration-500 group-hover:border-[var(--color-accent)]/60" />
 
-                {/* Corner accents */}
                 <div className="absolute left-2 top-2 z-10 h-4 w-4 border-l border-t border-[var(--color-accent)] transition-all duration-500 group-hover:h-5 group-hover:w-5" />
                 <div className="absolute right-2 top-2 z-10 h-4 w-4 border-r border-t border-[var(--color-accent)] transition-all duration-500 group-hover:h-5 group-hover:w-5" />
                 <div className="absolute bottom-2 left-2 z-10 h-4 w-4 border-b border-l border-[var(--color-accent)] transition-all duration-500 group-hover:h-5 group-hover:w-5" />
                 <div className="absolute bottom-2 right-2 z-10 h-4 w-4 border-b border-r border-[var(--color-accent)] transition-all duration-500 group-hover:h-5 group-hover:w-5" />
 
-                {/* Caption — dynamic project data */}
                 <div
                   className="absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between px-7 pb-7 pt-16"
                   style={{
@@ -280,11 +267,11 @@ export default async function Home() {
                         .join(" · ")}
                     </div>
                   </div>
+
                   <div className="flex items-center gap-2 font-heading text-[13px] font-light tracking-[0.1em] text-slate-400">
                     <span>
                       01 / {String(featuredProjects.length).padStart(2, "0")}
                     </span>
-                    {/* View arrow — appears on hover */}
                     <svg
                       className="h-4 w-4 -translate-x-1 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100"
                       fill="none"
@@ -302,7 +289,6 @@ export default async function Home() {
                 </div>
               </Link>
 
-              {/* Vertical year label — dynamic */}
               <span
                 className="absolute -right-14 top-1/2 hidden -translate-y-1/2 rotate-90 whitespace-nowrap text-[9px] tracking-[0.35em] uppercase text-[var(--color-accent)]/35 xl:block"
                 aria-hidden="true"
