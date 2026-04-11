@@ -79,7 +79,6 @@ function inputClassName(hasError: boolean) {
   ].join(" ");
 }
 
-
 function SuccessModal({ onClose }: { onClose: () => void }) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -189,7 +188,9 @@ export function ContactForm() {
   const turnstileWidgetIdRef = useRef<string | null>(null);
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
 
   const [serverError, setServerError] = useState("");
   const [turnstileToken, setTurnstileToken] = useState("");
@@ -422,7 +423,16 @@ export function ContactForm() {
             </label>
             <select
               id="projectType"
-              className={inputClassName(!!errors.projectType)}
+              className={
+                inputClassName(!!errors.projectType) +
+                " appearance-none cursor-pointer"
+              }
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "right 14px center",
+                paddingRight: "40px",
+              }}
               value={form.projectType}
               onChange={(e) => updateField("projectType", e.target.value)}
               aria-invalid={!!errors.projectType}
