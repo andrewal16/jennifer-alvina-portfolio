@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 declare global {
   interface Window {
@@ -78,16 +79,8 @@ function inputClassName(hasError: boolean) {
   ].join(" ");
 }
 
-// ─────────────────────────────────────────────────────────────
-// SUCCESS MODAL
-// ─────────────────────────────────────────────────────────────
-function SuccessModal({ onClose }: { onClose: () => void }) {
-  // Close on backdrop click
-  function handleBackdropClick(e: React.MouseEvent<HTMLDivElement>) {
-    if (e.target === e.currentTarget) onClose();
-  }
 
-  // Close on Escape key
+function SuccessModal({ onClose }: { onClose: () => void }) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -96,19 +89,20 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
-  return (
+  function handleBackdropClick(e: React.MouseEvent<HTMLDivElement>) {
+    if (e.target === e.currentTarget) onClose();
+  }
+
+  const modal = (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center px-4"
       style={{ backgroundColor: "rgba(2, 6, 23, 0.55)" }}
       onClick={handleBackdropClick}
     >
-      {/* Backdrop blur layer */}
       <div
         className="absolute inset-0 -z-10"
         style={{ backdropFilter: "blur(6px)" }}
       />
-
-      {/* Modal panel */}
       <div
         className="relative w-full max-w-md overflow-hidden rounded-2xl bg-[var(--bg-card)] shadow-2xl"
         style={{
@@ -116,7 +110,6 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
           border: "1px solid rgba(197,160,89,0.18)",
         }}
       >
-        {/* Gold top accent bar */}
         <div
           className="h-1 w-full"
           style={{
@@ -124,9 +117,7 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
               "linear-gradient(90deg, var(--color-accent), var(--color-accent-light), var(--color-accent))",
           }}
         />
-
         <div className="p-8">
-          {/* Icon */}
           <div
             className="mb-6 flex h-14 w-14 items-center justify-center rounded-full"
             style={{
@@ -148,30 +139,22 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
               />
             </svg>
           </div>
-
-          {/* Eyebrow */}
           <p
             className="mb-2 text-xs font-medium uppercase tracking-[0.22em]"
             style={{ color: "var(--color-accent)" }}
           >
             Inquiry Received
           </p>
-
-          {/* Heading */}
           <h2
             className="mb-3 font-heading text-3xl font-light leading-tight"
             style={{ color: "var(--text-heading)" }}
           >
             Thank you for reaching out.
           </h2>
-
-          {/* Divider */}
           <div
             className="mb-4 h-px w-12"
             style={{ background: "var(--color-accent)" }}
           />
-
-          {/* Body */}
           <p
             className="mb-8 text-sm leading-7"
             style={{ color: "var(--text-body)" }}
@@ -179,27 +162,12 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
             Your project brief has been received and is now under review. We
             will be in touch with you shortly to discuss the next steps.
           </p>
-
-          {/* Close button */}
           <button
             onClick={onClose}
-            className="inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition-all hover:-translate-y-0.5"
+            className="inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition-all hover:-translate-y-0.5 hover:bg-brand-accent/8"
             style={{
               border: "1px solid rgba(197,160,89,0.35)",
               color: "var(--color-darkest)",
-              background: "transparent",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background =
-                "rgba(197,160,89,0.08)";
-              (e.currentTarget as HTMLButtonElement).style.borderColor =
-                "var(--color-accent)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background =
-                "transparent";
-              (e.currentTarget as HTMLButtonElement).style.borderColor =
-                "rgba(197,160,89,0.35)";
             }}
           >
             Close
@@ -208,8 +176,9 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
       </div>
     </div>
   );
-}
 
+  return createPortal(modal, document.body);
+}
 // ─────────────────────────────────────────────────────────────
 // MAIN COMPONENT
 // ─────────────────────────────────────────────────────────────
