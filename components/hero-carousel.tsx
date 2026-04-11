@@ -278,7 +278,7 @@ export function HeroCarousel({
               type="button"
               onClick={goPrev}
               aria-label="Previous project"
-              className="grid h-10 w-10 place-items-center border border-white/[0.08] text-white/30 transition-all duration-300 hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)]"
+              className="grid h-10 w-10 place-items-center rounded-full border border-white/35 bg-[linear-gradient(140deg,rgba(255,255,255,0.35)_0%,rgba(255,255,255,0.08)_100%)] text-white/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_8px_18px_rgba(2,6,23,0.35)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-accent)]/45 hover:text-[var(--color-accent)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_12px_22px_rgba(2,6,23,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
             >
               <svg
                 width="15"
@@ -299,7 +299,7 @@ export function HeroCarousel({
               type="button"
               onClick={goNext}
               aria-label="Next project"
-              className="grid h-10 w-10 place-items-center border border-white/[0.08] text-white/30 transition-all duration-300 hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)]"
+              className="grid h-10 w-10 place-items-center rounded-full border border-white/35 bg-[linear-gradient(140deg,rgba(255,255,255,0.35)_0%,rgba(255,255,255,0.08)_100%)] text-white/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_8px_18px_rgba(2,6,23,0.35)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-accent)]/45 hover:text-[var(--color-accent)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_12px_22px_rgba(2,6,23,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
             >
               <svg
                 width="15"
