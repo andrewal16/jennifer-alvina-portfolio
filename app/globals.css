@@ -4,257 +4,465 @@
    DM Sans             → body / UI
    Plus Jakarta Sans   → fallback
    ───────────────────────────────────────────────────────────── */
-   @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
-   @import "tailwindcss";
-   
-   /* ─────────────────────────────────────────────────────────────
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
       DESIGN TOKENS
       ───────────────────────────────────────────────────────────── */
-   :root {
-     /* Brand palette */
-     --color-primary:      #f8fafc;
-     --color-secondary:    #94a3b8;
-     --color-accent:       #c5a059;
-     --color-accent-light: #dfb96e;
-     --color-accent-hover: #b48e4b;
-     --color-dark:         #0f172a;
-     --color-darkest:      #020617;
-   
-     /* Page surfaces */
-     --bg-page:            #f8fafc;
-     --bg-card:            #ffffff;
-   
-     /* Semantic text */
-     --text-heading:       var(--color-darkest);
-     --text-body:          #334155;
-     --text-muted:         #64748b;
-     --text-on-dark:       #ffffff;
-     --border-default:     rgba(148, 163, 184, 0.2);
-   
-     /* Typography */
-     --font-sans:    "DM Sans", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-     --font-heading: "Cormorant Garamond", "Plus Jakarta Sans", serif;
-   }
-   
-   /* ─────────────────────────────────────────────────────────────
+:root {
+  /* Brand palette */
+  --color-primary: #f8fafc;
+  --color-secondary: #94a3b8;
+  --color-accent: #c5a059;
+  --color-accent-light: #dfb96e;
+  --color-accent-hover: #b48e4b;
+  --color-dark: #0f172a;
+  --color-darkest: #020617;
+
+  /* Page surfaces */
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+
+  /* Semantic text */
+  --text-heading: var(--color-darkest);
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --text-on-dark: #ffffff;
+  --border-default: rgba(148, 163, 184, 0.2);
+
+  /* Typography */
+  --font-sans:
+    "DM Sans", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-heading: "Cormorant Garamond", "Plus Jakarta Sans", serif;
+}
+
+/* ─────────────────────────────────────────────────────────────
       TAILWIND THEME MAPPING
       ───────────────────────────────────────────────────────────── */
-   @theme inline {
-     --color-brand-primary:      var(--color-primary);
-     --color-brand-secondary:    var(--color-secondary);
-     --color-brand-accent:       var(--color-accent);
-     --color-brand-dark:         var(--color-dark);
-     --color-brand-darkest:      var(--color-darkest);
-     --color-brand-accent-light: var(--color-accent-light);
-     --color-brand-accent-hover: var(--color-accent-hover);
-     --font-sans:                var(--font-sans);
-     --font-heading:             var(--font-heading);
-   }
-   
-   /* ─────────────────────────────────────────────────────────────
+@theme inline {
+  --color-brand-primary: var(--color-primary);
+  --color-brand-secondary: var(--color-secondary);
+  --color-brand-accent: var(--color-accent);
+  --color-brand-dark: var(--color-dark);
+  --color-brand-darkest: var(--color-darkest);
+  --color-brand-accent-light: var(--color-accent-light);
+  --color-brand-accent-hover: var(--color-accent-hover);
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+}
+
+/* ─────────────────────────────────────────────────────────────
       BASE RESET & GLOBAL
       ───────────────────────────────────────────────────────────── */
-   *,
-   *::before,
-   *::after {
-     box-sizing: border-box;
-   }
-   
-   html {
-     scroll-behavior: smooth;
-   }
-   
-   body {
-     background:              var(--bg-page);
-     color:                   var(--text-body);
-     font-family:             var(--font-sans);
-     font-size:               16px;
-     line-height:             1.7;
-     -webkit-font-smoothing:  antialiased;
-     -moz-osx-font-smoothing: grayscale;
-     overflow-x:              hidden;
-   }
-   
-   h1, h2, h3, h4, h5, h6 {
-     color:       var(--text-heading);
-     font-family: var(--font-heading);
-     font-weight: 300;
-     line-height: 1.15;
-   }
-   
-   a,
-   button {
-     transition: all 0.3s ease;
-   }
-   
-   img,
-   video {
-     max-width: 100%;
-     height:    auto;
-     display:   block;
-   }
-   
-   /* ─────────────────────────────────────────────────────────────
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-heading);
+  font-family: var(--font-heading);
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+a,
+button {
+  transition: all 0.3s ease;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─────────────────────────────────────────────────────────────
       KEYFRAMES
       ───────────────────────────────────────────────────────────── */
-   
-   /* Generic — used by sections outside hero */
-   @keyframes fade-in-up {
-     0%   { opacity: 0; transform: translateY(20px); }
-     100% { opacity: 1; transform: translateY(0);    }
-   }
-   
-   /* Hero: standard fade + rise */
-   @keyframes hero-fade-in {
-     0%   { opacity: 0; transform: translateY(24px); }
-     100% { opacity: 1; transform: translateY(0);    }
-   }
-   
-   /* Hero: image panel slides in from right */
-   @keyframes hero-slide-in-right {
-     0%   { opacity: 0; transform: translateX(40px); }
-     100% { opacity: 1; transform: translateX(0);    }
-   }
-   
-   /* Hero: accent bar width expand */
-   @keyframes hero-reveal-width {
-     0%   { width: 0; }
-     100% { width: 72px; }
-   }
-   
-   /* Hero: architectural line/rule fade */
-   @keyframes hero-line-reveal {
-     0%   { opacity: 0; }
-     100% { opacity: 1; }
-   }
-   
-   /* Hero: corner bracket scales in */
-   @keyframes hero-corner-reveal {
-     0%   { opacity: 0; transform: scale(0.5); }
-     100% { opacity: 1; transform: scale(1);   }
-   }
-   
-   /* Hero: watermark text rises up */
-   @keyframes hero-watermark-in {
-     0%   { opacity: 0; transform: translateY(30px); }
-     100% { opacity: 1; transform: translateY(0);    }
-   }
-   
-   /* Scroll indicator — travelling light line */
-   @keyframes scroll-line {
-     0%   { transform: translateY(-100%); }
-     100% { transform: translateY(100%);  }
-   }
-   
-   /* ─────────────────────────────────────────────────────────────
+
+/* Generic — used by sections outside hero */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero: standard fade + rise */
+@keyframes hero-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero: image panel slides in from right */
+@keyframes hero-slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Hero: accent bar width expand */
+@keyframes hero-reveal-width {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 72px;
+  }
+}
+
+/* Hero: architectural line/rule fade */
+@keyframes hero-line-reveal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Hero: corner bracket scales in */
+@keyframes hero-corner-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hero: watermark text rises up */
+@keyframes hero-watermark-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll indicator — travelling light line */
+@keyframes scroll-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* Hero Carousel: autoplay progress bar on active dot */
+@keyframes carousel-progress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 32px;
+  }
+}
+
+/* Hero Carousel: full-width segmented progress bar */
+@keyframes carousel-progress-full {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Hero Carousel: subtle Ken Burns drift while slide is active */
+@keyframes carousel-ken-burns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.06) translate(-1%, -0.5%);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
       SHARED ANIMATION UTILITIES
       ───────────────────────────────────────────────────────────── */
-   .animate-fade-in-up {
-     animation: fade-in-up 0.8s ease-out forwards;
-   }
-   
-   .animate-scroll-line {
-     animation: scroll-line 2s ease-in-out infinite;
-   }
-   
-   /* ─────────────────────────────────────────────────────────────
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-scroll-line {
+  animation: scroll-line 2s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────
       HERO SECTION — STAGGERED ANIMATION SEQUENCE
       All elements start hidden via `opacity-0` class in JSX.
       Each rule below drives the reveal at its designated delay.
       Easing: cubic-bezier(0.16, 1, 0.3, 1)  =  ease-out-expo
       ───────────────────────────────────────────────────────────── */
-   
-   /* 0. Watermark — very slow, first to drift up */
-   .hero-section .hero-watermark {
-     animation: hero-watermark-in 2s ease-out 0.2s both;
-   }
-   
-   /* 1. Eyebrow label + dash */
-   .hero-section .hero-eyebrow {
-     animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
-   }
-   
-   /* 2. Headline — each line staggered */
-   .hero-section .hero-title-line:nth-child(1) {
-     animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.70s both;
-   }
-   .hero-section .hero-title-line:nth-child(2) {
-     animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.82s both;
-   }
-   .hero-section .hero-title-line:nth-child(3) {
-     animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.94s both;
-   }
-   
-   /* 3. Gold accent bar grows after headline lands */
-   .hero-section .hero-accent-bar {
-     animation: hero-reveal-width 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
-   }
-   
-   /* 4. Subtitle paragraph */
-   .hero-section .hero-subtitle {
-     animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.3s both;
-   }
-   
-   /* 5. CTA button row */
-   .hero-section .hero-ctas {
-     animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.5s both;
-   }
-   
-   /* 6. Right image panel — slides in from right */
-   .hero-section .hero-right-col {
-     animation: hero-slide-in-right 1.1s cubic-bezier(0.16, 1, 0.3, 1) 1.6s both;
-   }
-   
-   /* 7. Floating badge on image */
-   .hero-section .hero-corner {
-     animation: hero-fade-in 0.8s ease-out 2s both;
-   }
-   
-   /* 8. Stats bar */
-   .hero-section .hero-stats {
-     animation: hero-fade-in 0.9s ease-out 1.8s both;
-   }
-   
-   /* 9. Decorative vertical rules (optional, via class on element) */
-   .hero-section .hero-line-left,
-   .hero-section .hero-line-right,
-   .hero-section .hero-line-horizontal {
-     animation: hero-line-reveal 1.5s ease-out 0.6s both;
-     opacity: 0;
-   }
-   
-   /* 10. Bottom-right corner bracket */
-   .hero-section .hero-corner-br {
-     animation: hero-corner-reveal 0.8s ease-out 1.8s both;
-   }
-   
-   /* 11. Vertical side label */
-   .hero-section .hero-vertical-label {
-     animation: hero-fade-in 0.9s ease-out 2s both;
-     opacity: 0;
-   }
-   
-   /* ─────────────────────────────────────────────────────────────
+
+/* 0. Watermark — very slow, first to drift up */
+.hero-section .hero-watermark {
+  animation: hero-watermark-in 2s ease-out 0.2s both;
+}
+
+/* 1. Eyebrow label + dash */
+.hero-section .hero-eyebrow {
+  animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+/* 2. Headline — each line staggered */
+.hero-section .hero-title-line:nth-child(1) {
+  animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+}
+.hero-section .hero-title-line:nth-child(2) {
+  animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.82s both;
+}
+.hero-section .hero-title-line:nth-child(3) {
+  animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.94s both;
+}
+
+/* 3. Gold accent bar grows after headline lands */
+.hero-section .hero-accent-bar {
+  animation: hero-reveal-width 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+}
+
+/* 4. Subtitle paragraph */
+.hero-section .hero-subtitle {
+  animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.3s both;
+}
+
+/* 5. CTA button row */
+.hero-section .hero-ctas {
+  animation: hero-fade-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.5s both;
+}
+
+/* 6. Right carousel panel — slides in from right */
+.hero-section .hero-right-col {
+  animation: hero-slide-in-right 1.1s cubic-bezier(0.16, 1, 0.3, 1) 1.6s both;
+}
+
+/* 7. Floating badge on image */
+.hero-section .hero-corner {
+  animation: hero-fade-in 0.8s ease-out 2s both;
+}
+
+/* 8. Stats bar */
+.hero-section .hero-stats {
+  animation: hero-fade-in 0.9s ease-out 1.8s both;
+}
+
+/* 9. Decorative vertical rules (optional, via class on element) */
+.hero-section .hero-line-left,
+.hero-section .hero-line-right,
+.hero-section .hero-line-horizontal {
+  animation: hero-line-reveal 1.5s ease-out 0.6s both;
+  opacity: 0;
+}
+
+/* 10. Bottom-right corner bracket */
+.hero-section .hero-corner-br {
+  animation: hero-corner-reveal 0.8s ease-out 1.8s both;
+}
+
+/* 11. Vertical side label */
+.hero-section .hero-vertical-label {
+  animation: hero-fade-in 0.9s ease-out 2s both;
+  opacity: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
       HERO SECTION — HOVER MICRO-INTERACTIONS
       ───────────────────────────────────────────────────────────── */
-   
-   /* Primary CTA: gold bloom glow on hover */
-   .hero-section .hero-ctas a:first-child {
-     position: relative;
-   }
-   
-   .hero-section .hero-ctas a:first-child::after {
-     content:        "";
-     position:       absolute;
-     inset:          -1px;
-     background:     var(--color-accent);
-     opacity:        0;
-     z-index:        -1;
-     filter:         blur(16px);
-     transition:     opacity 0.4s ease;
-     pointer-events: none;
-   }
-   
-   .hero-section .hero-ctas a:first-child:hover::after {
-     opacity: 0.2;
-   }
+
+/* Primary CTA: gold bloom glow on hover */
+.hero-section .hero-ctas a:first-child {
+  position: relative;
+}
+
+.hero-section .hero-ctas a:first-child::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: var(--color-accent);
+  opacity: 0;
+  z-index: -1;
+  filter: blur(16px);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.hero-section .hero-ctas a:first-child:hover::after {
+  opacity: 0.2;
+}
+
+/* ─────────────────────────────────────────────────────────────
+      HERO CAROUSEL — SLIDE & NAVIGATION STYLES
+      ───────────────────────────────────────────────────────────── */
+
+/* Ken Burns drift on the currently visible slide's image layer */
+.hero-carousel-viewport
+  .hero-carousel-slide[style*="opacity: 1"]
+  > div:first-child {
+  animation: carousel-ken-burns 8s ease-out forwards;
+}
+
+/* Pause Ken Burns on hover so the hover-scale takes over cleanly */
+.hero-carousel-viewport:hover .hero-carousel-slide > div:first-child {
+  animation-play-state: paused;
+}
+
+/* Navigation arrow hover glow */
+.hero-section .hero-right-col button[aria-label="Next project"],
+.hero-section .hero-right-col button[aria-label="Previous project"] {
+  position: relative;
+}
+
+.hero-section .hero-right-col button[aria-label="Next project"]::after,
+.hero-section .hero-right-col button[aria-label="Previous project"]::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--color-accent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.hero-section .hero-right-col button:hover::after {
+  opacity: 0.25;
+}
+
+/* ─────────────────────────────────────────────────────────────
+      PORTFOLIO CARDS — HOVER & ENTRANCE ANIMATIONS
+      ───────────────────────────────────────────────────────────── */
+
+/* Expo ease-out utility for premium deceleration */
+.cubic-bezier-expo {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card resting state — light shadow */
+.project-card {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.03);
+  will-change: transform, box-shadow;
+}
+
+/* Card hover — deep, layered shadow with subtle accent tint */
+.project-card:hover {
+  box-shadow:
+    0 32px 64px -16px rgba(0, 0, 0, 0.12),
+    0 16px 32px -8px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(197, 160, 89, 0.08);
+}
+
+/* Gold accent line shimmer on hover */
+@keyframes accent-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Asymmetric grid alignment */
+@media (min-width: 768px) {
+  .portfolio-grid {
+    align-items: start;
+  }
+}
+/* ─────────────────────────────────────────────────────────────
+   PORTFOLIO GRID & CARD — ADDITIONAL STYLES
+   Append this block to the end of your globals.css
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Card border transitions from neutral to accent on hover ── */
+.project-card > a {
+  border: 1px solid var(--border-default);
+  transition:
+    border-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+.project-card:hover > a {
+  border-color: var(--color-accent);
+  box-shadow:
+    0 24px 56px -12px rgba(0, 0, 0, 0.14),
+    0 0 0 1px rgba(197, 160, 89, 0.08);
+}
+
+/* ── Summary text expand: smooth max-height transition ── */
+.project-card .line-clamp-2 {
+  max-height: 3.6em;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.project-card:hover .line-clamp-none {
+  max-height: 12em;
+}
+
+/* ── Skeleton shimmer for loading cards ── */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-card {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 25%,
+    rgba(148, 163, 184, 0.08) 50%,
+    var(--bg-card) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
+}

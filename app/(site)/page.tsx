@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ProjectCard } from "@/components/project-card";
+import { HeroCarousel } from "@/components/hero-carousel";
 import { getHomePageContent } from "@/lib/content";
 import { getFeaturedProjects } from "@/lib/projects";
 
@@ -9,9 +9,6 @@ export default async function Home() {
   const featuredProjects = await getFeaturedProjects(
     content.featuredProjectsLimit ?? 3
   );
-
-  // ── HERO FEATURED PROJECT (first featured project) ──
-  const heroProject = featuredProjects?.[0] ?? null;
 
   // HERO VARIABLES
   const heroEyebrow = content.heroEyebrow || "Interior Atelier";
@@ -52,10 +49,7 @@ export default async function Home() {
         "Space Planning",
         "Material Styling",
       ];
-  const heroImageSrc = heroProject?.coverImage?.url ?? null;
-  const heroProjectHref = heroProject?.slug
-    ? `/portfolio/${heroProject.slug}`
-    : "/portfolio";
+
   // CTA VARIABLES
   const ctaEyebrow = content.ctaSectionEyebrow || "Let's collaborate";
   const ctaTitle =
@@ -98,7 +92,7 @@ export default async function Home() {
         </div>
 
         {/* ═══ MAIN CONTENT GRID ═══ */}
-        <div className="relative z-10 mx-auto grid w-full max-w-[1400px] flex-1 grid-cols-1 items-center gap-16 px-[6%] py-20 lg:grid-cols-[1fr_0.75fr] lg:gap-8 lg:py-0">
+        <div className="relative z-10 mx-auto grid w-full max-w-[1400px] flex-1 grid-cols-1 items-center gap-16 px-[6%] py-20 lg:grid-cols-[1fr_1.15fr] lg:gap-12 lg:py-0">
           {/* ── LEFT COLUMN ── */}
           <div className="max-w-2xl">
             {/* Eyebrow row */}
@@ -179,123 +173,13 @@ export default async function Home() {
           </div>
 
           {/* ══════════════════════════════════════════════════════════
-              RIGHT COLUMN: Dynamic Featured Project Panel
+              RIGHT COLUMN: Carousel of Featured Projects
               ══════════════════════════════════════════════════════════ */}
-          {heroProject && (
-            <div className="hero-right-col relative hidden opacity-0 lg:block">
-              <div className="hero-corner absolute -left-5 -top-5 z-20 border border-[var(--color-accent)]/20 bg-[#0a0f1e] px-4 py-3 opacity-0">
-                <span className="block text-[9px] tracking-[0.3em] uppercase text-[var(--color-accent)]">
-                  Selected Work
-                </span>
-                <span className="mt-0.5 block text-[9px] tracking-[0.12em] text-slate-600">
-                  {heroProject.category || heroProject.title}
-                </span>
-              </div>
-
-              <Link
-                href={heroProjectHref}
-                className="group relative block overflow-hidden transition-transform duration-700 hover:scale-[1.01]"
-                style={{ aspectRatio: "3/4", maxHeight: "72vh" }}
-              >
-                {heroImageSrc ? (
-                  <Image
-                    src={heroImageSrc}
-                    alt={heroProject.title || "Featured project"}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 0vw, 40vw"
-                    priority
-                  />
-                ) : (
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `
-              linear-gradient(120deg, rgba(255,255,255,0.04) 0%, transparent 40%),
-              linear-gradient(to bottom,
-                #1a1208 0%, #2a1e10 15%, #3d2d1a 30%,
-                #c4a882 50%, #d4bc98 65%, #b89a74 80%, #9a7e58 100%
-              )
-            `,
-                    }}
-                  >
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        backgroundImage: `
-                linear-gradient(rgba(197,160,89,0.07) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(197,160,89,0.07) 1px, transparent 1px)
-              `,
-                        backgroundSize: "48px 48px",
-                      }}
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: `
-                radial-gradient(ellipse at 30% 60%, rgba(197,160,89,0.12) 0%, transparent 60%),
-                linear-gradient(to bottom, rgba(2,6,23,0.4) 0%, transparent 30%, rgba(2,6,23,0.5) 100%)
-              `,
-                      }}
-                    />
-                  </div>
-                )}
-
-                <div className="absolute inset-0 z-[5] bg-gradient-to-t from-transparent via-white/0 to-white/0 transition-all duration-700 group-hover:via-white/[0.03]" />
-
-                <div className="pointer-events-none absolute inset-[-1px] z-10 border border-[var(--color-accent)]/35 transition-colors duration-500 group-hover:border-[var(--color-accent)]/60" />
-
-                <div className="absolute left-2 top-2 z-10 h-4 w-4 border-l border-t border-[var(--color-accent)] transition-all duration-500 group-hover:h-5 group-hover:w-5" />
-                <div className="absolute right-2 top-2 z-10 h-4 w-4 border-r border-t border-[var(--color-accent)] transition-all duration-500 group-hover:h-5 group-hover:w-5" />
-                <div className="absolute bottom-2 left-2 z-10 h-4 w-4 border-b border-l border-[var(--color-accent)] transition-all duration-500 group-hover:h-5 group-hover:w-5" />
-                <div className="absolute bottom-2 right-2 z-10 h-4 w-4 border-b border-r border-[var(--color-accent)] transition-all duration-500 group-hover:h-5 group-hover:w-5" />
-
-                <div
-                  className="absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between px-7 pb-7 pt-16"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(2,6,23,0.88) 50%, transparent)",
-                  }}
-                >
-                  <div>
-                    <div className="font-heading text-lg font-light italic text-white">
-                      {heroProject.title}
-                    </div>
-                    <div className="mt-1 text-[9px] tracking-[0.25em] uppercase text-[var(--color-accent)]">
-                      {[heroProject.location, heroProject.year]
-                        .filter(Boolean)
-                        .join(" · ")}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 font-heading text-[13px] font-light tracking-[0.1em] text-slate-400">
-                    <span>
-                      01 / {String(featuredProjects.length).padStart(2, "0")}
-                    </span>
-                    <svg
-                      className="h-4 w-4 -translate-x-1 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={1.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-
-              <span
-                className="absolute -right-14 top-1/2 hidden -translate-y-1/2 rotate-90 whitespace-nowrap text-[9px] tracking-[0.35em] uppercase text-[var(--color-accent)]/35 xl:block"
-                aria-hidden="true"
-              >
-                Interior Design Studio — Since 2024
-              </span>
-            </div>
+          {featuredProjects.length > 0 && (
+            <HeroCarousel
+              projects={featuredProjects}
+              totalCount={featuredProjects.length}
+            />
           )}
         </div>
 
@@ -305,7 +189,8 @@ export default async function Home() {
             {[
               { num: "3", sup: "+", label: "Years of Experience" },
               { num: "20", sup: "+", label: "Projects Delivered" },
-              { num: "5", sup: "★", label: "Client Satisfaction" },
+              { num: "5", sup: "★", label: "Client Satisfaction" }, 
+
               { num: "Jakarta", sup: "", label: "Based In" },
             ].map(({ num, sup, label }) => (
               <div
